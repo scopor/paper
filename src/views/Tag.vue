@@ -2,7 +2,7 @@
   <div class="container bg-white px-16 space-y-8">
     <div class="grid grid-cols-10 mt-24 justify-between">
       <div
-          v-for="(tag, index) in tags"
+          v-for="tag in tags"
           :key="tag.name"
           :class="['cursor-pointer', 'text-black font-sans', 'flex', 'items-start', currentTag === tag.name ? 'font-bold text-pink-400' : '']"
           @click="selectTag(tag.name)">
@@ -14,7 +14,7 @@
     <div class="mt-8">
       <div v-if="filteredPosts.length" >
         <ul class="my-8 space-y-4">
-          <li v-for="(post, index) in filteredPosts" :key="post.slug" data-index="{{index}}" class="flex justify-between">
+          <li v-for="post in filteredPosts" :key="post.slug" class="flex justify-between">
             <span class="hover:text-pink-400"><router-link :to="{ name: 'posts', params: { slug: post.slug } }">{{ post.title }}</router-link></span>
             <span class="text-gray-400">{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
           </li>
@@ -29,10 +29,10 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
 import {getPostMetadata} from '../utils/posts'
-import { useRoute } from 'vue-router'; // 导入 useRoute
+import {useRoute} from 'vue-router'; // 导入 useRoute
 
 const posts = getPostMetadata(); // 获取所有博文元数据
-const tags = ref([]); // 存储标签及其数量
+const tags = ref([] as { name: string; count: number; }[]); // 存储标签及其数量
 const currentTag = ref(''); // 当前选中的标签
 
 // 计算过滤后的博文列表
@@ -59,7 +59,7 @@ const initializeTags = () => {
 };
 
 // 选择标签
-const selectTag = (tagName) => {
+const selectTag = (tagName: string) => {
   currentTag.value = tagName;
 };
 
@@ -73,9 +73,9 @@ onMounted(() => {
   console.log(tagName)
   // 如果有传递的标签名称，则设置为当前标签
   if (tagName) {
-    currentTag.value = tagName;
+    currentTag.value = tagName as string;
   } else if (tags.value.length > 0) {
-    currentTag.value = tags.value[0].name; // 默认选择第一个标签
+    currentTag.value = tags.value[0].name as string; // 默认选择第一个标签
   }
 });
 </script>
