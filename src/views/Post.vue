@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { getPostMetadata, getPostContent } from '../utils/posts'
+import {getPostMetadata, getPostContent, PostMetadata} from '../utils/posts'
 
 const content = ref<any>(null)
 const route = useRoute()
@@ -30,11 +30,11 @@ const frontmatter = ref<any>({})
 const posts = getPostMetadata(); // 获取所有博文元数据
 
 // 定义上一篇和下一篇的引用
-const prevPost = ref(null);
-const nextPost = ref(null);
+const prevPost = ref<PostMetadata | null>(null);
+const nextPost = ref<PostMetadata | null>(null);
 
 // 更新当前博文和上下篇博文
-const updatePosts = (slug) => {
+const updatePosts = (slug: string) => {
   const currentIndex = posts.findIndex(post => post.slug === slug);
 
   // 更新当前博文的内容
@@ -51,7 +51,7 @@ const updatePosts = (slug) => {
 
 // 监听路由参数变化
 watch(() => route.params.slug, (newSlug) => {
-  updatePosts(newSlug);
+  updatePosts(newSlug  as string);
 });
 
 // 在组件载时初始化当前博文
