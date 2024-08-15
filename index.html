@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/film.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>山水微澜</title>
+</head>
+<body  class="bg-gray-100">
+<div id="app"></div>
+<i id="backToTop" class="gg-arrow-up back-to-top"></i>
+<script type="module" src="/src/main.ts"></script>
+</body>
+<style>
+    .markdown-body ul li {
+        list-style-type: disc;
+        padding-left: 5px;
+    }
+
+    .markdown-body h2:hover {
+        color: rgb(244 114 182);
+    }
+    .markdown-body h3:hover {
+        color: rgb(244 114 182);
+    }
+    .markdown-body h4:hover {
+        color: rgb(244 114 182);
+    }
+
+    .back-to-top {
+        position: fixed; /* 固定定位 */
+        bottom: 100px; /* 距离底部20px */
+        right: 100px; /* 距离右侧20px */
+        background-color: rgb(224 114 182); /* 按钮背景颜色 */
+        color: white; /* 图标颜色 */
+        border: 2px; /* 去掉边框 */
+        border-radius: 100%; /* 圆形按钮 */
+        width: 22px; /* 按钮宽度 */
+        height: 22px; /* 按钮高度 */
+        display: flex; /* 使用 Flexbox 居中图标 */
+        align-items: center; /* 垂直居中 */
+        justify-content: center; /* 水平居中 */
+        cursor: pointer; /* 鼠标指针样式 */
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+        transition: background-color 0.5s; /* 添加过渡效果 */
+    }
+
+    .markdown-body hr {
+        border-bottom: 0;
+        height: 0.01em
+    }
+</style>
+<script>
+    // 获取按钮元素
+    const backToTopButton = document.getElementById('backToTop');
+
+    // 当用户滚动到一定位置时显示按钮
+    window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            backToTopButton.style.display = "flex"; // 显示按钮
+        } else {
+            backToTopButton.style.display = "none"; // 隐藏按钮
+        }
+    };
+
+    // 点击按钮返回顶部
+    backToTopButton.onclick = function() {
+        window.scrollTo({top: 0, behavior: 'smooth'}); // 平滑滚动到顶部
+    };
+</script>
+</html>
