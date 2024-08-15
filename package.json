@@ -1,0 +1,38 @@
+{
+  "name": "waves",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "css.gg": "^2.1.1",
+    "github-markdown-css": "^5.6.1",
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.10.0",
+    "markdown-it-anchor": "^9.0.1",
+    "markdown-it-prism": "^2.3.0",
+    "md-powerpack": "^1.0.3",
+    "rss": "^1.2.2",
+    "sitemap": "^8.0.0",
+    "vite-plugin-md": "^0.22.5",
+    "vue": "^3.4.35",
+    "vue-router": "^4.4.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "4.0.0",
+    "@yankeeinlondon/code-builder": "^1.2.1",
+    "@yankeeinlondon/link-builder": "^1.2.1",
+    "@yankeeinlondon/meta-builder": "^1.4.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.8",
+    "typescript": "^5.5.3",
+    "vite": "4.0.0",
+    "vue-tsc": "^2.0.29"
+  }
+}
