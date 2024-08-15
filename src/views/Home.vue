@@ -1,76 +1,66 @@
 <template>
-  <main class="container mx-auto px-12 py-10">
-    <div class="flex flex-col ">
-      <div v-for="post in paginatedPosts" :key="post.slug"
-           class="bg-white p-4 pb-8 transition-shadow duration-300 space-y-8">
-        <h1 class="text-2xl font-semibold text-black font-sans">
-          <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="text-black hover:text-pink-400">
-            {{ post.title }}
-          </router-link>
-        </h1>
-        <p class="font-serif mt-2">{{ post.description }}</p>
-        <p class="flex space-x-4 items-center">
-          <span v-if="post.date" class='gg-heart text-pink-400 text-sm ml-1 pb-2 -mr-2'/>
-          <span class="text-sm text-gray-400 hover:text-pink-400">
-            {{ !post.date ? "" : new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}
-          </span>
-          <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-sm ml-1 -mr-2'/>
-          <div class="flex-shrink text-sm text-gray-400 hover:text-pink-400" v-for="tag in post.tags" :key="tag">
-            <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
-          </div>
-        </p>
-        <p class="mt-4">
-          <hr/>
-        </p>
-      </div>
-      <div class="flex text-sm justify-between p-4">
-        <button @click="prevPage" :disabled="currentPage === 1" class="text-black hover:text-pink-400">
-          {{ currentPage === 1 ? "" : "返回上一页" }}
-        </button>
-        <span class="pl-4">第 {{ currentPage }} 页，共 {{ totalPages }} 页</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="text-black hover:text-pink-400">
-          阅读更多文章
-        </button>
+  <div class="container bg-white px-16 space-y-8">
+    <div class="flex flex-col mt-24">
+      <div v-for="(year, index) in currentYears" :key="year" class="space-y-4">
+        <h1 class="text-2xl text-pink-400 ">{{ year }}</h1>
+        <ul>
+          <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between space-y-4">
+            <span><a :href="'/posts/' + post.slug">{{ post.title }}</a></span>
+            <span>{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
+          </li>
+        </ul>
+        <hr class="pb-4" v-if="index !== currentYears.length - 1 || endYearIndex < years.length || currentPage != 0"/>
       </div>
     </div>
-  </main>
+    <div class="flex justify-between pb-12 -ml-2 -mr-1">
+      <button class="hover:text-pink-400" @click="prevPage"><span v-if="currentPage != 0">上一页</span></button>
+      <button class="hover:text-pink-400" @click="nextPage"><span v-if="endYearIndex < years.length">下一页</span></button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {ref, computed, onMounted} from 'vue'
-import {getPostMetadata, PostMetadata} from '../utils/posts'
+import {ref, computed} from 'vue';
+import {getPostMetadata, PostMetadata} from '../utils/posts.ts'; // 根据实际路径引入
 
-const allPosts = ref<PostMetadata[]>([])
-const recentPosts = ref<PostMetadata[]>([])
-const currentPage = ref(1)
-const postsPerPage = 5
-let totalPages = ref(0);
+const posts = getPostMetadata();
+const currentPage = ref(0);
+const postsPerPage = 2; // 每页显示的年份数量
 
-onMounted(() => {
-  allPosts.value = getPostMetadata();
-  totalPages = computed(() => Math.ceil(allPosts.value.length / postsPerPage));
-  recentPosts.value = allPosts.value.slice(0, 5) // 获取最新的5篇文章
-})
-
-const paginatedPosts = computed(() => {
-  const start = (currentPage.value - 1) * postsPerPage
-  const end = start + postsPerPage
-  return allPosts.value.slice(start, end)
-})
-
-const prevPage = () => {
-  if (currentPage.value > 1) {
-    currentPage.value--
+// 按年份分组
+const groupedPosts: Record<string, PostMetadata[]> = {};
+posts.forEach(post => {
+  const year = new Date(post.date).getFullYear();
+  if (!groupedPosts[year]) {
+    groupedPosts[year] = [];
   }
-}
+  groupedPosts[year].push(post);
+});
+
+// 获取年份并倒序排列
+const years = Object.keys(groupedPosts).sort((a, b) => parseInt(b) - parseInt(a));
+
+// 计算当前页的年份
+const startYearIndex = computed(() => currentPage.value * postsPerPage);
+const endYearIndex = computed(() => startYearIndex.value + postsPerPage);
+const currentYears = computed(() => years.slice(startYearIndex.value, endYearIndex.value));
+
+// 分页控制函数
+const prevPage = () => {
+  if (currentPage.value > 0) {
+    currentPage.value--;
+  }
+};
 
 const nextPage = () => {
-  if (currentPage.value < totalPages.value) {
-    currentPage.value++
+  if (endYearIndex.value < years.length) {
+    currentPage.value++;
   }
-}
+};
 </script>
 
 <style scoped>
-/* 可以在这里添加更多样式 */
+button {
+  margin: 5px;
+}
 </style>
