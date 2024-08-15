@@ -33,11 +33,9 @@ export default defineConfig({
                 breaks: true,
                 xhtmlOut: true,
                 highlight: ((str, lang) => {
-                    console.log(lang)
                     if (lang && highlight.getLanguage(lang)) {
-                        console.log(lang)
                         try {
-                            return highlight.highlight(lang, str).value;
+                            return highlight.highlight(lang as string, str as string).value;
                         } catch (___) {
                             console.log("parse error.")
                         }
