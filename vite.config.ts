@@ -32,10 +32,10 @@ export default defineConfig({
                 typographer: true,
                 breaks: true,
                 xhtmlOut: true,
-                highlight: ((str, lang) => {
+                highlight: ((str: string, lang: string) => {
                     if (lang && highlight.getLanguage(lang)) {
                         try {
-                            return highlight.highlight(lang as string, str as string).value;
+                            return highlight.highlight(lang, str).value;
                         } catch (___) {
                             console.log("parse error.")
                         }
