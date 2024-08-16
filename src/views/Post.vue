@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto mt-24 bg-white px-16 space-y-8">
     <h1 class="text-2xl font-bold font-sans text-pink-400">{{ frontmatter.title }}</h1>
-    <div v-html="content" class="postContent container markdown-body"></div>
+    <component :is="postComponent" class="font-serif "/>
     <div class="flex space-x-4 items-center">
       <span v-if="frontmatter.date" class='gg-heart text-pink-400 text-sm ml-1 -mr-2'/>
       <span class="text-sm text-gray-400 items-center text-center"> {{ !frontmatter.date ? "" : "" + new Date(frontmatter.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
@@ -20,11 +20,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { defineAsyncComponent, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import {getPostMetadata, getPostContent, PostMetadata} from '../utils/posts'
 
-const content = ref<any>(null)
+
+const postComponent = ref<any>(null)
 const route = useRoute()
 const frontmatter = ref<any>({})
 const posts = getPostMetadata(); // 获取所有博文元数据
@@ -40,7 +41,7 @@ const updatePosts = (slug: string) => {
   // 更新当前博文的内容
   const postContent = getPostContent(slug);
   if (postContent) {
-    content.value = postContent.content;
+    postComponent.value = defineAsyncComponent(() => Promise.resolve(postContent.component));
     frontmatter.value = postContent.frontmatter;
   }
 
@@ -51,13 +52,15 @@ const updatePosts = (slug: string) => {
 
 // 监听路由参数变化
 watch(() => route.params.slug, (newSlug) => {
-  updatePosts(newSlug  as string);
+  updatePosts(newSlug as string);
 });
 
 // 在组件载时初始化当前博文
 onMounted(() => {
   const slug = route.params.slug as string;
   updatePosts(slug);
+
+
 });
 </script>
 
