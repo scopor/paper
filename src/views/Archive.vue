@@ -25,7 +25,7 @@ import {getPostMetadata, PostMetadata} from '../utils/posts.ts'; // 根据实际
 
 const posts = getPostMetadata();
 const currentPage = ref(0);
-const postsPerPage = 2; // 每页显示的年份数量
+const postsPerPage = 1; // 每页显示的年份数量
 
 // 按年份分组
 const groupedPosts: Record<string, PostMetadata[]> = {};
