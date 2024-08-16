@@ -5,8 +5,10 @@
         <h1 class="text-2xl text-pink-400 ">{{ year }}</h1>
         <ul>
           <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between space-y-4">
-            <span><a :href="'/posts/' + post.slug">{{ post.title }}</a></span>
-            <span>{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
+            <div class="flex justify-between">
+              <span><a :href="'/posts/' + post.slug">{{ post.title }}</a></span>
+              <span>{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
+            </div>
           </li>
         </ul>
         <hr class="pb-4" v-if="index !== currentYears.length - 1 || endYearIndex < years.length || currentPage != 0"/>
