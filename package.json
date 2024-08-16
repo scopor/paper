@@ -1,5 +1,5 @@
 {
-  "name": "waves",
+  "name": "scopor",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "css.gg": "^2.1.1",
     "github-markdown-css": "^5.6.1",
     "gray-matter": "^4.0.3",
