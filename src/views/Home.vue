@@ -29,7 +29,7 @@
         </button>
         <span class="pl-4">第 {{ currentPage }} 页，共 {{ totalPages }} 页</span>
         <button @click="nextPage" :disabled="currentPage === totalPages" class="text-black hover:text-pink-400">
-          阅读更多文章
+          {{ currentPage === totalPages ? "" : "阅读更多文章" }}
         </button>
       </div>
     </div>
