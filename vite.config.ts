@@ -20,7 +20,7 @@ export default defineConfig({
                 typographer: true,
                 breaks: true,
                 xhtmlOut: true,
-                highlight: ((str, lang) => {
+                highlight: ((str: string, lang: string) => {
                     console.log(lang)
                     if (lang && highlight.getLanguage(lang)) {
                         console.log(lang)
