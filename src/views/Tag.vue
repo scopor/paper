@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
 import {getPostMetadata} from '../utils/posts'
-import {useRoute} from 'vue-router'; // 导入 useRoute
+import { useRoute } from 'vue-router'; // 导入 useRoute
 
 const posts = getPostMetadata(); // 获取所有博文元数据
 const tags = ref([] as { name: string; count: number; }[]); // 存储标签及其数量
