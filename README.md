@@ -1,4 +1,6 @@
-# waves
+# waves 
+
+A little Blog, use Vue3 + Typescript
 
 ![image](https://github.com/user-attachments/assets/4eed1c6a-692d-4307-ab6c-f26d8c2772b5)
 
