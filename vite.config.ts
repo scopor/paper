@@ -5,24 +5,12 @@ import {code, meta, link} from 'md-powerpack'
 import markdownItAnchor from 'markdown-it-anchor'
 import markdownItPrism from 'markdown-it-prism'
 import highlight from 'highlight.js/lib/core'
-import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+
 
 export default defineConfig({
-    optimizeDeps: {
-        esbuildOptions: {
-            define: {
-                global: 'globalThis', // 将 global 定义为 globalThis
-            },
-            plugins: [
-                NodeGlobalsPolyfillPlugin({
-                    buffer: true, // 启用 Buffer polyfill
-                }),
-            ],
-        },
-    },
     plugins: [
         vue({
-            include: [/\.vue$/],
+            include: [/\.vue$/, /\.md$/],
         }),
         Markdown({
             builders: [code(), meta(), link()],
@@ -32,8 +20,10 @@ export default defineConfig({
                 typographer: true,
                 breaks: true,
                 xhtmlOut: true,
-                highlight: ((str: string, lang: string) => {
+                highlight: ((str, lang) => {
+                    console.log(lang)
                     if (lang && highlight.getLanguage(lang)) {
+                        console.log(lang)
                         try {
                             return highlight.highlight(lang, str).value;
                         } catch (___) {
