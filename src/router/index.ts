@@ -20,7 +20,7 @@ const routes = [
         path: '/tag', // 新增的路由
         name: 'tagDefault',
         component: Tag,
-        props: { tag: '默认标签' }, // 可以设置一个默认标签
+        props: true,
     },
     {
         path: '/tag/:tag',
