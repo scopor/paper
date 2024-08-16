@@ -56,6 +56,8 @@ const initializeTags = () => {
 
   tags.value = Array.from(tagMap, ([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count); // 按数量降序排序
+
+  console.log(JSON.stringify(tags));
 };
 
 // 选择标签
@@ -70,13 +72,14 @@ onMounted(() => {
   // 使用 useRoute 获取路由参数
   const route = useRoute();
   const tagName = route.params.tag; // 获取传递的标签名称
-  console.log(tagName)
+
   // 如果有传递的标签名称，则设置为当前标签
   if (tagName) {
     currentTag.value = tagName as string;
   } else if (tags.value.length > 0) {
     currentTag.value = tags.value[0].name as string; // 默认选择第一个标签
   }
+  console.log(currentTag.value)
 });
 </script>
 
