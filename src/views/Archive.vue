@@ -4,11 +4,9 @@
       <div v-for="(year, index) in currentYears" :key="year" class="space-y-4">
         <h1 class="text-2xl text-pink-400 ">{{ year }}</h1>
         <ul>
-          <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex flex-col my-2">
-            <div class="flex flex-row justify-between">
-              <span><a :href="'/posts/' + post.slug">{{ post.title }}</a></span>
-              <span>{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
-            </div>
+          <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between space-y-4">
+            <span><a :href="'/posts/' + post.slug">{{ post.title }}</a></span>
+            <span>{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
           </li>
         </ul>
         <hr class="pb-4" v-if="index !== currentYears.length - 1 || endYearIndex < years.length || currentPage != 0"/>
@@ -27,7 +25,7 @@ import {getPostMetadata, PostMetadata} from '../utils/posts.ts'; // 根据实际
 
 const posts = getPostMetadata();
 const currentPage = ref(0);
-const postsPerPage = 1; // 每页显示的年份数量
+const postsPerPage = 2; // 每页显示的年份数量
 
 // 按年份分组
 const groupedPosts: Record<string, PostMetadata[]> = {};
