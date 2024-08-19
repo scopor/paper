@@ -1,6 +1,6 @@
 <template>
   <div class="container bg-white px-16 space-y-8">
-    <div class="grid grid-cols-5 mt-24 justify-between">
+    <div class="grid grid-cols-10 mt-24 justify-between">
       <div
           v-for="tag in tags"
           :key="tag.name"
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
 import {getPostMetadata} from '../utils/posts'
-import { useRoute } from 'vue-router'; // 导入 useRoute
+import {useRoute} from 'vue-router'; // 导入 useRoute
 
 const posts = getPostMetadata(); // 获取所有博文元数据
 const tags = ref([] as { name: string; count: number; }[]); // 存储标签及其数量
@@ -56,8 +56,6 @@ const initializeTags = () => {
 
   tags.value = Array.from(tagMap, ([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count); // 按数量降序排序
-
-  console.log(JSON.stringify(tags));
 };
 
 // 选择标签
@@ -72,14 +70,13 @@ onMounted(() => {
   // 使用 useRoute 获取路由参数
   const route = useRoute();
   const tagName = route.params.tag; // 获取传递的标签名称
-
+  console.log(tagName)
   // 如果有传递的标签名称，则设置为当前标签
   if (tagName) {
     currentTag.value = tagName as string;
   } else if (tags.value.length > 0) {
     currentTag.value = tags.value[0].name as string; // 默认选择第一个标签
   }
-  console.log(currentTag.value)
 });
 </script>
 
