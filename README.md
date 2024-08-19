@@ -1,4 +1,4 @@
-# waves 
+# paper 
 
 A little Blog, use Vue3 + Typescript + tailwindcss
 
