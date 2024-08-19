@@ -1,50 +1,34 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
-import Markdown from 'vite-plugin-md'
-import {code, meta, link} from 'md-powerpack'
-import markdownItAnchor from 'markdown-it-anchor'
-import markdownItPrism from 'markdown-it-prism'
-import highlight from 'highlight.js/lib/core'
-
+import {nodePolyfills} from "vite-plugin-node-polyfills";
 
 export default defineConfig({
-    plugins: [
-        vue({
-            include: [/\.vue$/, /\.md$/],
-        }),
-        Markdown({
-            builders: [code(), meta(), link()],
-            markdownItOptions: {
-                html: true,
-                linkify: true,
-                typographer: true,
-                breaks: true,
-                xhtmlOut: true,
-                highlight: ((str: string, lang: string) => {
-                    console.log(lang)
-                    if (lang && highlight.getLanguage(lang)) {
-                        console.log(lang)
-                        try {
-                            return highlight.highlight(lang, str).value;
-                        } catch (___) {
-                            console.log("parse error.")
-                        }
+    build: {
+        chunkSizeWarningLimit: 1500,
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
                     }
-                    return '';
-                })
+                }
             },
-            markdownItUses: [
-                markdownItAnchor,
-                markdownItPrism
+        },
+    },
+    optimizeDeps: {
+        esbuildOptions: {
+            define: {
+                global: 'globalThis', // 将 global 定义为 globalThis
+            },
+            plugins: [
+
             ],
-            markdownItSetup(md) {
-                md.use(markdownItAnchor)
-                md.use(markdownItPrism)
-            },
-            // 将 Markdown 文件作为 Vue 组件处理
-            vuePlugin: {
-                exposeFrontmatter: true
-            }
-        })
+        },
+    },
+    plugins: [
+        nodePolyfills(),
+        vue({
+            include: [/\.vue$/],
+        }),
     ],
 })
