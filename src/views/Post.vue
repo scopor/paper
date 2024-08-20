@@ -10,7 +10,7 @@
         <router-link :to="{ name: 'tag', params: { tag: tag } }" >{{ tag }}</router-link>
       </span>
     </div>
-    <hr v-if="frontmatter.title != 'About Me'  || (!prevPost && !nextPost) "/>
+    <hr v-if="frontmatter.title != 'About Me'   && (prevPost || nextPost) "/>
     <div class="flex pb-8 justify-between">
       <span v-if="prevPost" class="hover:text-pink-300"><router-link :to="{ name: 'posts', params: { slug: prevPost.slug } }">上一篇: {{ prevPost.title }}</router-link></span>
       <span v-else="prevPost"></span>
