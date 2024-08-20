@@ -4,7 +4,7 @@
       <div v-for="(year, index) in currentYears" :key="year" class="space-y-4">
         <h1 class="text-2xl text-pink-400 ">{{ year }}</h1>
         <ul>
-          <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between space-y-4">
+          <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between">
             <span><a :href="'/posts/' + post.slug">{{ post.title }}</a></span>
             <span>{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
           </li>
