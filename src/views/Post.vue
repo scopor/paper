@@ -20,9 +20,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import {onBeforeMount, onMounted, ref, watch} from 'vue'
 import { useRoute } from 'vue-router'
 import {getPostMetadata, getPostContent, PostMetadata} from '../utils/posts'
+import { markdownItDiagramDom } from 'markdown-it-diagram/dom'
+import mermaid from 'mermaid'
 
 const content = ref<any>(null)
 const route = useRoute()
@@ -54,8 +56,14 @@ watch(() => route.params.slug, (newSlug) => {
   updatePosts(newSlug  as string);
 });
 
+onBeforeMount(async () => {
+  mermaid.initialize({ startOnLoad: true })
+  await mermaid.run()
+  await markdownItDiagramDom()
+})
+
 // 在组件载时初始化当前博文
-onMounted(() => {
+onMounted( () => {
   const slug = route.params.slug as string;
   updatePosts(slug);
 });
