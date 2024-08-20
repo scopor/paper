@@ -1,7 +1,7 @@
 <template>
   <main class="container mx-auto px-12 py-10">
     <div class="flex flex-col ">
-      <div v-for="post in paginatedPosts" :key="post.slug"
+      <div v-for="(post, index) in paginatedPosts" :key="post.slug"
            class="bg-white p-4 pb-8 transition-shadow duration-300 space-y-8">
         <h1 class="text-2xl font-semibold text-black font-sans">
           <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="text-black hover:text-pink-400">
@@ -20,7 +20,7 @@
           </div>
         </p>
         <p class="mt-4">
-          <hr/>
+          <hr v-if="totalPages != 1 && index == paginatedPosts.length - 1"/>
         </p>
       </div>
       <div class="flex text-sm justify-between p-4">
@@ -29,7 +29,7 @@
         </button>
         <span class="pl-4">第 {{ currentPage }} 页，共 {{ totalPages }} 页</span>
         <button @click="nextPage" :disabled="currentPage === totalPages" class="text-black hover:text-pink-400">
-          阅读更多文章
+          {{ currentPage === totalPages ? "" : "阅读更多文章" }}
         </button>
       </div>
     </div>
