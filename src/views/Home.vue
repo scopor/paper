@@ -20,7 +20,7 @@
           </div>
         </p>
         <p class="mt-4">
-          <hr v-if="totalPages != 1 && index == paginatedPosts.length - 1"/>
+          <hr/>
         </p>
       </div>
       <div class="flex text-sm justify-between p-4">
