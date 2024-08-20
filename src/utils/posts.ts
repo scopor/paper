@@ -2,10 +2,13 @@ import matter from "gray-matter";
 import MarkdownIt from "markdown-it";
 import highlight from 'highlight.js'
 import markdownItAnchor from "markdown-it-anchor";
-
+import markdownItMermaid from 'markdown-it-diagram'
+// @ts-ignore
+import katex from 'markdown-it-katex'
+// @ts-ignore
+import markdownItTaskLists from 'markdown-it-task-lists'
 interface PostModule {
     default: any;
-
     [key: string]: any;
 }
 
@@ -20,21 +23,30 @@ export interface PostMetadata {
 }
 
 const postFiles = import.meta.glob<PostModule>('../posts/*.md', {eager: true, as: 'raw'});
+
 const md = new MarkdownIt({
     html: true,
     linkify: true,
     typographer: true,
     breaks: true,
     xhtmlOut: true,
-    highlight: (str, lang) => {
+    highlight: (str: string, lang: string) => {
         if (lang && highlight.getLanguage(lang)) {
             try {
-                return highlight.highlight(str, { language: lang }).value; // 使用 highlight.js 进行高亮
-            } catch (__) {}
+                return highlight.highlight(str, {language: lang}).value; // 使用 highlight.js 进行高亮
+            } catch (__) {
+            }
         }
         return ''; // 如果没有语言，返回空字符串
-    },
-}).use(markdownItAnchor);
+    }})
+    .use(markdownItAnchor)
+    .use(markdownItMermaid, {
+        imageFormat: 'png',
+        mermaid: true,
+        showController: true,
+        ditaa: {imageFormat: 'png'}
+    })
+    .use(katex).use(markdownItTaskLists, {label: true, labelAfter: true, enabled: true});
 
 export function getPostMetadata(): PostMetadata[] {
     const posts = Object.entries(postFiles)
