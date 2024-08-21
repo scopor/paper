@@ -70,7 +70,7 @@ onMounted(() => {
   // 使用 useRoute 获取路由参数
   const route = useRoute();
   const tagName = route.params.tag; // 获取传递的标签名称
-  console.log(tagName)
+
   // 如果有传递的标签名称，则设置为当前标签
   if (tagName) {
     currentTag.value = tagName as string;
