@@ -5,7 +5,7 @@
     <div class="flex space-x-4 items-center">
       <span v-if="frontmatter.date" class='gg-heart text-pink-400 text-sm ml-1 -mr-2'/>
       <span class="text-sm text-gray-400 items-center text-center"> {{ formattedDate(frontmatter.date) }}</span>
-      <span v-if="frontmatter.date" class='gg-tag text-pink-400 text-sm ml-1 -mr-2'/>
+      <span v-if="frontmatter.tags" class='gg-tag text-pink-400 text-sm ml-1 -mr-2'/>
       <span v-for="tag in frontmatter.tags" :key="tag" class="text-sm text-gray-400 hover:text-pink-300">
         <router-link :to="{ name: 'tag', params: { tag: tag } }" >{{ tag }}</router-link>
       </span>
