@@ -48,6 +48,8 @@ const md = new MarkdownIt({
     })
     .use(katex).use(markdownItTaskLists, {label: true, labelAfter: true, enabled: true});
 
+md.disable('code');
+
 export function getPostMetadata(): PostMetadata[] {
     const posts = Object.entries(postFiles)
         .filter(([filepath]) => {
