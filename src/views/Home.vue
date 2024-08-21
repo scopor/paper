@@ -1,7 +1,7 @@
 <template>
   <main class="container mx-auto px-12 py-10">
     <div class="flex flex-col ">
-      <div v-for="(post, index) in paginatedPosts" :key="post.slug"
+      <div v-for="post in paginatedPosts" :key="post.slug"
            class="bg-white p-4 pb-8 transition-shadow duration-300 space-y-8">
         <h1 class="text-2xl font-semibold text-black font-sans">
           <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="text-black hover:text-pink-400">
