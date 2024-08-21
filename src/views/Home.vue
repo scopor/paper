@@ -12,7 +12,7 @@
         <p class="flex space-x-4 items-center">
           <span v-if="post.date" class='gg-heart text-pink-400 text-sm ml-1 pb-2 -mr-2'/>
           <span class="text-sm text-gray-400 hover:text-pink-400">
-            {{ !post.date ? "" : new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}
+            {{ formattedDate(post.date) }}
           </span>
           <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-sm ml-1 -mr-2'/>
           <div class="flex-shrink text-sm text-gray-400 hover:text-pink-400" v-for="tag in post.tags" :key="tag">
@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import {ref, computed, onMounted} from 'vue'
-import {getPostMetadata, PostMetadata} from '../utils/posts'
+import {getPostMetadata, PostMetadata, formattedDate} from '../utils/posts'
 
 const allPosts = ref<PostMetadata[]>([])
 const recentPosts = ref<PostMetadata[]>([])
