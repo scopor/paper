@@ -30,7 +30,7 @@ const md = new MarkdownIt({
     typographer: true,
     breaks: true,
     xhtmlOut: true,
-    highlight: (str: string, lang: string) => {
+    highlight: (str: string, lang: string): string => {
         if (lang && highlight.getLanguage(lang)) {
             try {
                 return highlight.highlight(str, {language: lang}).value; // 使用 highlight.js 进行高亮
