@@ -37,7 +37,7 @@ const md = new MarkdownIt({
             } catch (__) {
             }
         }
-        return ''; // 如果没有语言，返回空字符串
+        return md.utils.escapeHtml(str);
     }})
     .use(markdownItAnchor)
     .use(markdownItMermaid, {
