@@ -4,7 +4,7 @@
       <div v-for="(year, index) in currentYears" :key="year" class="space-y-4">
         <h1 class="text-2xl text-pink-400 ">{{ year }}</h1>
         <ul>
-          <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between">
+          <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between my-4">
             <span>
               <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="text-black hover:text-pink-400">
                 {{ post.title }}
