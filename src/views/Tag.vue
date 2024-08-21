@@ -16,7 +16,7 @@
         <ul class="my-8 space-y-4">
           <li v-for="post in filteredPosts" :key="post.slug" class="flex justify-between">
             <span class="hover:text-pink-400"><router-link :to="{ name: 'posts', params: { slug: post.slug } }">{{ post.title }}</router-link></span>
-            <span class="text-gray-400">{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
+            <span class="text-gray-400">{{ formattedDate(post.date) }}</span>
           </li>
         </ul>
       </div>
@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
-import {getPostMetadata} from '../utils/posts'
+import {getPostMetadata, formattedDate} from '../utils/posts'
 import {useRoute} from 'vue-router'; // 导入 useRoute
 
 const posts = getPostMetadata(); // 获取所有博文元数据
