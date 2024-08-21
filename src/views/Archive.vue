@@ -10,7 +10,7 @@
                 {{ post.title }}
               </router-link>
             </span>
-            <span>{{ new Date(post.date).toLocaleString('zh', {hour12: false}).replaceAll('/', '-') }}</span>
+            <span>{{ formattedDate(post.date) }}</span>
           </li>
         </ul>
         <hr class="pb-4" v-if="index !== currentYears.length - 1 || endYearIndex < years.length || currentPage != 0"/>
@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import {ref, computed} from 'vue';
-import {getPostMetadata, PostMetadata} from '../utils/posts.ts'; // 根据实际路径引入
+import {getPostMetadata, PostMetadata, formattedDate} from '../utils/posts.ts'; // 根据实际路径引入
 
 const posts = getPostMetadata();
 const currentPage = ref(0);
