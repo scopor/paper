@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto mt-24 bg-white px-16 space-y-8">
     <h1 class="text-2xl font-bold font-sans text-pink-400">{{ frontmatter.title }}</h1>
-    <div v-html="content" class="postContent container markdown-body"></div>
+    <div v-html="content" class="font-serif postContent container markdown-body"></div>
     <div class="flex space-x-4 items-center">
       <span v-if="frontmatter.date" class='gg-heart text-pink-400 text-sm ml-1 -mr-2'/>
       <span class="text-sm text-gray-400 items-center text-center"> {{ formattedDate(frontmatter.date) }}</span>
@@ -10,7 +10,7 @@
         <router-link :to="{ name: 'tag', params: { tag: tag } }" >{{ tag }}</router-link>
       </span>
     </div>
-    <hr v-if="frontmatter.title != 'About Me'   && (prevPost || nextPost) "/>
+    <hr v-if="frontmatter.title != 'About Me' && (prevPost || nextPost)"/>
     <div class="flex pb-8 justify-between">
       <span v-if="prevPost" class="hover:text-pink-300"><router-link :to="{ name: 'posts', params: { slug: prevPost.slug } }">上一篇: {{ prevPost.title }}</router-link></span>
       <span v-else="prevPost"></span>
@@ -21,10 +21,11 @@
 
 <script setup lang="ts">
 import {onBeforeMount, onMounted, ref, watch} from 'vue'
-import { useRoute } from 'vue-router'
-import {getPostMetadata, getPostContent, PostMetadata, formattedDate} from '../utils/posts'
-import { markdownItDiagramDom } from 'markdown-it-diagram/dom'
+import {useRoute} from 'vue-router'
+import {formattedDate, getPostContent, getPostMetadata, PostMetadata} from '../utils/posts'
+import {markdownItDiagramDom} from 'markdown-it-diagram/dom'
 import mermaid from 'mermaid'
+import {useCopyCode} from 'markdown-it-copy-code'
 
 const content = ref<any>(null)
 const route = useRoute()
@@ -56,16 +57,17 @@ watch(() => route.params.slug, (newSlug) => {
   updatePosts(newSlug  as string);
 });
 
-onBeforeMount(async () => {
+onBeforeMount(() => {
   mermaid.initialize({ startOnLoad: true })
-  await mermaid.run()
-  await markdownItDiagramDom()
+  mermaid.run()
+  markdownItDiagramDom()
 })
 
 // 在组件载时初始化当前博文
 onMounted( () => {
   const slug = route.params.slug as string;
   updatePosts(slug);
+  useCopyCode();
 });
 </script>
 
