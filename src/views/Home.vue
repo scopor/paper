@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto px-12 py-10">
+  <main class="container mx-auto px-8 lg:px-16 py-10">
     <div class="flex flex-col ">
       <div v-for="post in paginatedPosts" :key="post.slug"
            class="bg-white p-4 pb-8 transition-shadow duration-300 space-y-8">
