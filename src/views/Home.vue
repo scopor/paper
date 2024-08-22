@@ -39,11 +39,9 @@
 <script setup lang="ts">
 import {computed, onMounted, ref, watch} from 'vue'
 import {formattedDate, getPostMetadata, PostMetadata} from '../utils/posts'
-import {useRoute} from "vue-router";
 import {useStore} from '../store'
 
 const store = useStore()
-const route = useRoute()
 const allPosts = ref<PostMetadata[]>([])
 const recentPosts = ref<PostMetadata[]>([])
 const currentPage = ref(1)
