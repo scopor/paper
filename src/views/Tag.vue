@@ -1,5 +1,5 @@
 <template>
-  <div class="container bg-white px-16 space-y-8">
+  <div class="container bg-white mx-auto px-16 space-y-8">
     <div class="grid grid-cols-10 mt-24 justify-between">
       <div
           v-for="tag in tags"
