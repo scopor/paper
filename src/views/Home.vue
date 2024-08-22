@@ -37,13 +37,17 @@
 </template>
 
 <script setup lang="ts">
-import {ref, computed, onMounted} from 'vue'
-import {getPostMetadata, PostMetadata, formattedDate} from '../utils/posts'
+import {computed, onMounted, ref, watch} from 'vue'
+import {formattedDate, getPostMetadata, PostMetadata} from '../utils/posts'
+import {useRoute} from "vue-router";
+import {useStore} from '../store'
 
+const store = useStore()
+const route = useRoute()
 const allPosts = ref<PostMetadata[]>([])
 const recentPosts = ref<PostMetadata[]>([])
 const currentPage = ref(1)
-const postsPerPage = 5
+const postsPerPage = 3
 let totalPages = ref(0);
 
 onMounted(() => {
@@ -61,14 +65,19 @@ const paginatedPosts = computed(() => {
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--
+    store.setPageIndex(currentPage.value)
   }
 }
-
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++
+    store.setPageIndex(currentPage.value)
   }
 }
+
+watch(() => store.page, (newPage) => {
+  currentPage.value = newPage;
+})
 </script>
 
 <style scoped>
