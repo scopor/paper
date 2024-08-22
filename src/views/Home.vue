@@ -22,11 +22,11 @@
           <hr/>
         </p>
       </div>
-      <div class="flex text-sm justify-between p-4">
+      <div class="flex text-sm justify-between pt-8">
         <button @click="prevPage" :disabled="currentPage === 1" class="text-black hover:text-pink-400">
           {{ currentPage === 1 ? "" : "返回上一页" }}
         </button>
-        <span class="pl-4">第 {{ currentPage }} 页，共 {{ totalPages }} 页</span>
+        <span class="">第 {{ currentPage }} 页，共 {{ totalPages }} 页</span>
         <button @click="nextPage" :disabled="currentPage === totalPages" class="text-black hover:text-pink-400">
           {{ currentPage === totalPages ? "" : "阅读更多文章" }}
         </button>
