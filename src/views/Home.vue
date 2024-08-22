@@ -1,9 +1,8 @@
 <template>
   <main class="container mx-auto px-8 lg:px-16 py-10">
     <div class="flex flex-col ">
-      <div v-for="post in paginatedPosts" :key="post.slug"
-           class="bg-white p-4 pb-8 transition-shadow duration-300 space-y-8">
-        <h1 class="text-2xl font-semibold text-black font-sans">
+      <div v-for="post in paginatedPosts" :key="post.slug" class="bg-white py-4 transition-shadow duration-300 space-y-8">
+        <h1 class="text-2xl font-medium text-black">
           <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="text-black hover:text-pink-400">
             {{ post.title }}
           </router-link>
