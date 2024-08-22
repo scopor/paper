@@ -14,10 +14,10 @@
             <span>{{ formattedDate(post.date) }}</span>
           </li>
         </ul>
-        <hr class="pb-4" v-if="index !== currentYears.length - 1 || endYearIndex < years.length || currentPage != 0"/>
+        <hr :class="[ index === currentYears.length - 1 ? '' : 'pb-4' ]" v-if="index !== currentYears.length - 1 || endYearIndex < years.length || currentPage != 0"/>
       </div>
     </div>
-    <div class="flex justify-between pb-12 -ml-2 -mr-1">
+    <div class="flex justify-between pb-6 -mr-1 -ml-1">
       <button class="hover:text-pink-400" @click="prevPage"><span v-if="currentPage != 0">上一页</span></button>
       <button class="hover:text-pink-400" @click="nextPage"><span v-if="endYearIndex < years.length">下一页</span>
       </button>
