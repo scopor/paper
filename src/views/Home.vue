@@ -8,14 +8,18 @@
           </router-link>
         </h1>
         <p class="font-serif mt-2">{{ post.description }}</p>
-        <p class="flex space-x-4 items-center">
-          <span v-if="post.date" class='gg-heart text-pink-400 text-sm ml-1 pb-2 -mr-2'/>
-          <span class="text-sm text-gray-400 hover:text-pink-400">
-            {{ formattedDate(post.date) }}
-          </span>
-          <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-sm ml-1 -mr-2'/>
-          <div class="flex-shrink text-sm text-gray-400 hover:text-pink-400" v-for="tag in post.tags" :key="tag">
-            <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
+        <p class="flex justify-start space-x-4 items-center">
+          <div class="flex justify-start items-center">
+            <span v-if="post.date" class='gg-heart text-pink-400 text-sm'/>
+            <span class="text-sm text-gray-400 hover:text-pink-400 pl-2">
+              {{ formattedDate(post.date) }}
+            </span>
+          </div>
+          <div class="flex justify-start items-center space-x-4">
+            <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-sm'/>
+            <div class="flex-shrink text-sm text-gray-400 hover:text-pink-400" v-for="tag in post.tags" :key="tag">
+              <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
+            </div>
           </div>
         </p>
         <p class="mt-4">
