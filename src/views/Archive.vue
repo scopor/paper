@@ -5,11 +5,12 @@
         <h1 class="text-2xl text-pink-400 ">{{ year }}</h1>
         <ul>
           <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between my-4">
-            <span>
-              <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="text-black hover:text-pink-400">
-                {{ post.title }}
-              </router-link>
-            </span>
+              <span>
+                <router-link :to="{ name: 'posts', params: { slug: post.slug } }"
+                             class="text-black hover:text-pink-400">
+                  {{ post.title }}
+                </router-link>
+              </span>
             <span>{{ formattedDate(post.date) }}</span>
           </li>
         </ul>
@@ -18,18 +19,21 @@
     </div>
     <div class="flex justify-between pb-12 -ml-2 -mr-1">
       <button class="hover:text-pink-400" @click="prevPage"><span v-if="currentPage != 0">上一页</span></button>
-      <button class="hover:text-pink-400" @click="nextPage"><span v-if="endYearIndex < years.length">下一页</span></button>
+      <button class="hover:text-pink-400" @click="nextPage"><span v-if="endYearIndex < years.length">下一页</span>
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref, computed} from 'vue';
-import {getPostMetadata, PostMetadata, formattedDate} from '../utils/posts.ts'; // 根据实际路径引入
+import {computed, ref, watch} from 'vue';
+import {formattedDate, getPostMetadata, PostMetadata} from '../utils/posts.ts'; // 根据实际路径引入
+import {useStore} from '../store'
 
 const posts = getPostMetadata();
 const currentPage = ref(0);
 const postsPerPage = 2; // 每页显示的年份数量
+const store = useStore();
 
 // 按年份分组
 const groupedPosts: Record<string, PostMetadata[]> = {};
@@ -53,14 +57,20 @@ const currentYears = computed(() => years.slice(startYearIndex.value, endYearInd
 const prevPage = () => {
   if (currentPage.value > 0) {
     currentPage.value--;
+    store.setArchivePageIndex(currentPage.value)
   }
 };
 
 const nextPage = () => {
   if (endYearIndex.value < years.length) {
     currentPage.value++;
+    store.setArchivePageIndex(currentPage.value)
   }
 };
+
+watch(() => store.archivePage, (newPage) => {
+  currentPage.value = newPage;
+})
 </script>
 
 <style scoped>
