@@ -1,6 +1,6 @@
 <template>
   <div class="container bg-white mx-auto px-8 lg:px-16 space-y-8">
-    <div class="grid grid-cols-10 mt-24 justify-between">
+    <div class="grid grid-cols-5 lg:grid-cols-10 mt-24 justify-between">
       <div
           v-for="tag in tags"
           :key="tag.name"
