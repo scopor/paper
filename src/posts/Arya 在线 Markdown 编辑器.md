@@ -3,7 +3,7 @@ title: "Arya 在线 Markdown 编辑器"
 date: 2024-08-17 12:26:33 +08:00
 draft: false
 tags: [Markdown]
-description: 一款基于 `Vue`、`Vditor`，为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等
+description: 一款为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等
 ---
 
 # 欢迎使用 `Arya` 在线 Markdown 编辑器
