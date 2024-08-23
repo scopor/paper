@@ -45,8 +45,20 @@
         transition: background-color 0.5s; /* 添加过渡效果 */
     }
 
+    .markdown-body hr {
+        border-bottom: 0;
+        height: 0.01em
+    }
+
     .katex-html {
         display: none;
+    }
+
+    /* 打印样式 */
+    @media print {
+        #blog * {
+            display: block; /* 仅显示可打印区域 */
+        }
     }
 
     .memos img {
