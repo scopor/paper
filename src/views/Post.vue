@@ -13,7 +13,7 @@
     <hr v-if="frontmatter.title != 'About Me' && (prevPost || nextPost)"/>
     <div class="flex pb-8 justify-between">
       <span v-if="prevPost" class="hover:text-pink-300"><router-link :to="{ name: 'posts', params: { slug: prevPost.slug } }">上一篇: {{ prevPost.title }}</router-link></span>
-      <span v-else="prevPost"></span>
+      <span v-else></span>
       <span v-if="nextPost && frontmatter.title != 'About Me'" class="hover:text-pink-300"><router-link :to="{ name: 'posts', params: { slug: nextPost.slug } }">下一篇: {{ nextPost.title }}</router-link></span>
     </div>
   </div>
@@ -22,10 +22,11 @@
 <script setup lang="ts">
 import {onBeforeMount, onMounted, ref, watch} from 'vue'
 import {useRoute} from 'vue-router'
-import {formattedDate, getPostContent, getPostMetadata, PostMetadata} from '../utils/posts'
+import {getPostContent, getPostMetadata, PostMetadata} from '../utils/posts'
 import {markdownItDiagramDom} from 'markdown-it-diagram/dom'
 import mermaid from 'mermaid'
 import {useCopyCode} from 'markdown-it-copy-code'
+import {formattedDate} from "../utils/date.ts";
 
 const content = ref<any>(null)
 const route = useRoute()
