@@ -1,11 +1,12 @@
 <template>
-  <header class="container bg-white text-black mx-auto px-8 lg:px-16 pt-20">
+  <header class="bg-white text-black container mx-auto px-8 lg:px-16 pt-20">
     <nav class="flex justify-between mb-10">
       <h1 class="text-3xl font-bold hover:text-pink-400"><router-link to="/" @click="goHome">微山<br>澜水</router-link></h1>
-      <ul class="flex space-x-4 md:space-x-8 mt-6">
+      <ul class="flex space-x-4 lg:space-x-8 mt-6">
         <li class="hover:text-pink-400"><router-link to="/" @click="goHome">首页</router-link></li>
         <li class="hover:text-pink-400"><router-link to="/archive" @click="goArchive">归档</router-link></li>
         <li class="hover:text-pink-400"><router-link to="/tag">标签</router-link></li>
+        <li class="hover:text-pink-400"><router-link to="/memos" @click="goMemos">Memos</router-link></li>
         <li class="hover:text-pink-400"><router-link to="/about">关于</router-link></li>
       </ul>
     </nav>
@@ -27,6 +28,11 @@ const goHome = () => {
 const goArchive = () => {
   store.setArchivePageIndex(0)
   router.push('/archive')
+}
+
+const goMemos = () => {
+  store.setMemosPageIndex(1)
+  router.push('/memos')
 }
 </script>
 
