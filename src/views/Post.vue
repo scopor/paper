@@ -58,10 +58,10 @@ watch(() => route.params.slug, (newSlug) => {
   updatePosts(newSlug  as string);
 });
 
-onBeforeMount(() => {
-  mermaid.initialize({ startOnLoad: true })
-  mermaid.run()
-  markdownItDiagramDom()
+onBeforeMount(async () => {
+  await mermaid.initialize({startOnLoad: true})
+  await mermaid.run()
+  await markdownItDiagramDom()
 })
 
 // 在组件载时初始化当前博文
