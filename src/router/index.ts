@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import Post from '../views/Post.vue';
 import Tag from '../views/Tag.vue';
 import Archive from '../views/Archive.vue';
+import Memos from "../views/Memos.vue";
 
 const routes = [
     {
@@ -20,7 +21,7 @@ const routes = [
         path: '/tag', // 新增的路由
         name: 'tagDefault',
         component: Tag,
-        props: true,
+        props: { tag: '默认标签' }, // 可以设置一个默认标签
     },
     {
         path: '/tag/:tag',
@@ -33,6 +34,11 @@ const routes = [
         name: 'archive',
         component: Archive,
         props: true,
+    },
+    {
+        path: '/memos',
+        name: 'memos',
+        component: Memos,
     },
     {
         path: '/about',
