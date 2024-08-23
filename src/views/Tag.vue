@@ -1,6 +1,6 @@
 <template>
   <div class="container bg-white mx-auto px-8 lg:px-16 space-y-8">
-    <div class="grid grid-cols-5 lg:grid-cols-10 mt-24 justify-between">
+    <div class="flex flex-wrap mt-24 justify-start space-x-8">
       <div
           v-for="tag in tags"
           :key="tag.name"
@@ -28,8 +28,9 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
-import {getPostMetadata, formattedDate} from '../utils/posts'
-import {useRoute} from 'vue-router'; // 导入 useRoute
+import {getPostMetadata} from '../utils/posts'
+import {useRoute} from 'vue-router';
+import {formattedDate} from "../utils/date.ts"; // 导入 useRoute
 
 const posts = getPostMetadata(); // 获取所有博文元数据
 const tags = ref([] as { name: string; count: number; }[]); // 存储标签及其数量
@@ -70,7 +71,6 @@ onMounted(() => {
   // 使用 useRoute 获取路由参数
   const route = useRoute();
   const tagName = route.params.tag; // 获取传递的标签名称
-
   // 如果有传递的标签名称，则设置为当前标签
   if (tagName) {
     currentTag.value = tagName as string;
