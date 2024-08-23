@@ -27,8 +27,9 @@
 
 <script setup lang="ts">
 import {computed, ref, watch} from 'vue';
-import {formattedDate, getPostMetadata, PostMetadata} from '../utils/posts.ts'; // 根据实际路径引入
+import {getPostMetadata, PostMetadata} from '../utils/posts.ts'; // 根据实际路径引入
 import {useStore} from '../store'
+import {formattedDate} from "../utils/date.ts";
 
 const posts = getPostMetadata();
 const currentPage = ref(0);
