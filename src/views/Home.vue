@@ -1,9 +1,9 @@
 <template>
   <main class="container mx-auto px-8 lg:px-16 py-10">
-    <div class="flex flex-col ">
+    <div class="flex flex-col">
       <div v-for="post in paginatedPosts" :key="post.slug" class="bg-white py-4 transition-shadow duration-300 space-y-8">
-        <h1 class="text-2xl font-medium text-black">
-          <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="text-black hover:text-pink-400">
+        <h1 class="text-2xl">
+          <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="font-sans hover:text-pink-400">
             {{ post.title }}
           </router-link>
         </h1>
@@ -28,11 +28,10 @@
       </div>
       <div class="flex text-sm justify-between pt-8">
         <button @click="prevPage" :disabled="currentPage === 1" class="text-black hover:text-pink-400">
-          {{ currentPage === 1 ? "" : "返回上一页" }}
+          {{ currentPage === 1 ? "&nbsp" : "返回上一页" }}
         </button>
-        <span class="">第 {{ currentPage }} 页，共 {{ totalPages }} 页</span>
         <button @click="nextPage" :disabled="currentPage === totalPages" class="text-black hover:text-pink-400">
-          {{ currentPage === totalPages ? "" : "阅读更多文章" }}
+          {{ currentPage === totalPages ? " " : "阅读更多文章" }}
         </button>
       </div>
     </div>
@@ -41,8 +40,9 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref, watch} from 'vue'
-import {formattedDate, getPostMetadata, PostMetadata} from '../utils/posts'
+import {getPostMetadata, PostMetadata} from '../utils/posts'
 import {useStore} from '../store'
+import {formattedDate} from "../utils/date.ts";
 
 const store = useStore()
 const allPosts = ref<PostMetadata[]>([])
