@@ -7,6 +7,8 @@ import markdownItMermaid from 'markdown-it-diagram'
 import katex from 'markdown-it-katex'
 // @ts-ignore
 import markdownItTaskLists from 'markdown-it-task-lists'
+import MarkdownItCopyCode from 'markdown-it-copy-code'
+
 interface PostModule {
     default: any;
     [key: string]: any;
@@ -30,10 +32,11 @@ const md = new MarkdownIt({
     typographer: true,
     breaks: true,
     xhtmlOut: true,
+    langPrefix: 'hljs language-',
     highlight: (str: string, lang: string): string => {
         if (lang && highlight.getLanguage(lang)) {
             try {
-                return highlight.highlight(str, {language: lang}).value; // 使用 highlight.js 进行高亮
+                return highlight.highlight(str, {language: lang}).value;
             } catch (__) {
             }
         }
@@ -46,10 +49,15 @@ const md = new MarkdownIt({
         showController: true,
         ditaa: {imageFormat: 'png'}
     })
-    .use(katex).use(markdownItTaskLists, {label: true, labelAfter: true, enabled: true});
-
+    .use(katex).use(markdownItTaskLists, {label: true, labelAfter: true, enabled: true})
+    .use(MarkdownItCopyCode,
+        {
+            containerClass: 'markdown-copy-code-container',
+            buttonClass: 'markdown-copy-code-button',
+            codeSVGClass: 'markdown-copy-code-code',
+            doneSVGClass: 'markdown-copy-code-done',
+        });
 md.disable('code');
-
 export function getPostMetadata(): PostMetadata[] {
     const posts = Object.entries(postFiles)
         .filter(([filepath]) => {
@@ -67,6 +75,8 @@ export function getPostMetadata(): PostMetadata[] {
                 content: postMatter.content,
                 frontmatter: postMatter.data
             }
+        }).filter((item: PostMetadata)=> {
+            return !item.frontmatter.draft || false;
         })
 
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -80,10 +90,7 @@ export function getPostContent(slug: string): { content: any; frontmatter: any }
     return {content: md.render(postMatter.content), frontmatter: postMatter.data || {}}
 }
 
-export function formattedDate(date: string): string {
-    if (!date) {
-        return ""
-    }
-    return new Date(date).toLocaleString('zh', { hour12: false, year: 'numeric', month: "2-digit", day: '2-digit', hour: "2-digit", minute: '2-digit', second: '2-digit'})
-        .replaceAll('/', '-');
+export function getMemos(content: string): string {
+    return md.render(content)
 }
+
