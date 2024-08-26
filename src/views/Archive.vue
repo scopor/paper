@@ -11,7 +11,7 @@
                   {{ post.title }}
                 </router-link>
               </span>
-            <span>{{ formattedDate(post.date) }}</span>
+            <span class="hidden md:block">{{ formattedDate(post.date) }}</span>
           </li>
         </ul>
         <hr :class="[ index === currentYears.length - 1 ? '' : 'pb-4' ]" v-if="index !== currentYears.length - 1 || endYearIndex < years.length || currentPage != 0"/>
