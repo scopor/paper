@@ -9,7 +9,7 @@
             <div class="flex justify-start space-x-4">
               <div v-for="mark in gist.description.split(' ')">
                 <div
-                    class="text-sm font-sans bg-fuchsia-50 p-1 rounded-sm text-pink-400 hover:font-bold">
+                    class="text-sm font-sans bg-fuchsia-50 p-1 rounded-sm text-emerald-400 hover:font-bold">
                   <a :href="gist.html_url" target="_blank">{{ mark }}</a></div>
               </div>
             </div>
