@@ -4,6 +4,7 @@ import {nodePolyfills} from "vite-plugin-node-polyfills";
 import viteCompression from "vite-plugin-compression"
 
 export default defineConfig({
+    base: "/",
     build: {
         sourcemap: false,
         minify: "terser",
