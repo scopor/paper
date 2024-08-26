@@ -2,7 +2,6 @@ import {createApp} from 'vue'
 import router from './router'
 import {createPinia} from "pinia";
 import './style.css'
-import './dracula.css'
 import 'github-markdown-css/github-markdown.css'
 // import 'highlight.js/styles/xcode.min.css'
 import 'highlight.js/styles/color-brewer.css'
