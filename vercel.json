@@ -8,6 +8,13 @@
       }
     },
     {
+      "source": "/(.*).js",
+      "destination": "/"
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
