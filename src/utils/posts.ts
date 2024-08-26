@@ -58,6 +58,16 @@ const md = new MarkdownIt({
             doneSVGClass: 'markdown-copy-code-done',
         });
 md.disable('code');
+md.renderer.rules.image = (tokens, idx) => {
+    const token = tokens[idx];
+    const src = token.attrGet('src');
+    const alt = token.attrGet('alt');
+    const title = token.attrGet('title');
+
+    // 添加点击事件
+    return `<a data-fancybox="gallery" href="${src}"><img src="${src}" alt="${alt}" title="${title}"></a>`;
+};
+
 export function getPostMetadata(): PostMetadata[] {
     const posts = Object.entries(postFiles)
         .filter(([filepath]) => {
