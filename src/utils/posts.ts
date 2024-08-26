@@ -70,7 +70,7 @@ export function getPostMetadata(): PostMetadata[] {
                 slug,
                 title: postMatter.data.title,
                 date: postMatter.data.date || '2024-01-01 00:00:00 +8:00',
-                description: postMatter.data.description || '',
+                description: md.render(postMatter.data.description) || '',
                 tags: postMatter.data.tags || [],
                 content: postMatter.content,
                 frontmatter: postMatter.data
