@@ -14,9 +14,9 @@
     <div class="mt-8">
       <div v-if="filteredPosts.length" >
         <ul class="my-8 space-y-4">
-          <li v-for="post in filteredPosts" :key="post.slug" class="hidden md:flex justify-between">
+          <li v-for="post in filteredPosts" :key="post.slug" class="flex justify-between">
             <span class="hover:text-pink-400"><router-link :to="{ name: 'posts', params: { slug: post.slug } }">{{ post.title }}</router-link></span>
-            <span class="text-gray-400">{{ formattedDate(post.date) }}</span>
+            <span class="text-gray-400 hidden md:flex">{{ formattedDate(post.date) }}</span>
           </li>
         </ul>
       </div>
