@@ -2,14 +2,14 @@
   "rewrites": [
     {
       "source": "/(.*).gz",
-      "destination": "/"
+      "destination": "/",
       "headers": {
         "Content-Type": "application/gzip"
       }
     },
     {
       "source": "/(.*).js",
-      "destination": "/"
+      "destination": "/",
       "headers": {
         "Content-Type": "application/javascript"
       }
