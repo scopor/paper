@@ -9,16 +9,14 @@
         </h1>
         <p v-if="post.frontmatter?.cover"><img :src=" post.frontmatter?.cover " alt=""/></p>
         <p class="font-serif mt-2">{{ post.description }}</p>
-        <p class="flex justify-start space-x-4 items-center">
-          <div class="flex justify-start items-center">
+        <p class="flex justify-start items-center">
+          <div class="flex flex-wrap justify-start items-center">
             <span v-if="post.date" class='gg-heart text-pink-400 text-xs lg:text-sm'/>
             <span class="text-xs lg:text-sm text-gray-400 hover:text-pink-400 pl-2">
               {{ formattedDate(post.date) }}
             </span>
-          </div>
-          <div class="flex justify-start items-center space-x-4">
-            <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-xs lg:text-sm'/>
-            <div class="flex-shrink text-xs lg:text-sm text-gray-400 hover:text-pink-400" v-for="tag in post.tags" :key="tag">
+            <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-xs lg:text-sm ml-4'/>
+            <div class="flex flex-wrap text-xs lg:text-sm text-gray-400 hover:text-pink-400 mx-4 " v-for="tag in post.tags" :key="tag">
               <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
             </div>
           </div>
