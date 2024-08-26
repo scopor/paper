@@ -4,6 +4,9 @@
     <meta charset="UTF-8"/>
     <link rel="icon" type="image/svg+xml" href="/film.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <title>山水微澜</title>
 </head>
 <body  class="bg-gray-100">
@@ -60,12 +63,6 @@
             display: block; /* 仅显示可打印区域 */
         }
     }
-
-    .memos img {
-        border-radius: 5px;
-        max-width: 30%;
-        height: auto;
-    }
 </style>
 <script>
     // 获取按钮元素
@@ -84,5 +81,9 @@
     backToTopButton.onclick = function() {
         window.scrollTo({top: 0, behavior: 'smooth'}); // 平滑滚动到顶部
     };
+
+    $(document).ready(function() {
+        $('[data-fancybox="gallery"]').fancybox();
+    });
 </script>
 </html>
