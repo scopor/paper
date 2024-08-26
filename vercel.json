@@ -1,6 +1,13 @@
 {
   "rewrites": [
     {
+      "source": "/(.*).gz",
+      "destination": "/"
+      "headers": {
+        "Content-Type": "application/gzip"
+      }
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
