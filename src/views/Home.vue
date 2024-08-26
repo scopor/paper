@@ -16,7 +16,7 @@
               {{ formattedDate(post.date) }}
             </span>
             <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-xs lg:text-sm ml-4'/>
-            <div class="flex flex-wrap text-xs lg:text-sm text-gray-400 hover:text-pink-400 mx-4 " v-for="tag in post.tags" :key="tag">
+            <div class="flex flex-wrap text-xs lg:text-sm text-gray-400 hover:text-pink-400 ml-2 " v-for="tag in post.tags" :key="tag">
               <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
             </div>
           </div>
