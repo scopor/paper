@@ -1,10 +1,8 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import {nodePolyfills} from "vite-plugin-node-polyfills";
-import viteCompression from "vite-plugin-compression"
 
 export default defineConfig({
-    base: "/",
     build: {
         minify: "terser",
         chunkSizeWarningLimit: 10240,
@@ -17,12 +15,6 @@ export default defineConfig({
                 }
             },
             plugins: []
-        },
-        terserOptions: {
-            compress: {
-                drop_console: true,
-                drop_debugger: true
-            }
         }
     },
     optimizeDeps: {
