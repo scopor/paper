@@ -10,7 +10,7 @@ export default defineConfig({
         chunkSizeWarningLimit: 10240,
         rollupOptions: {
             output: {
-                chunkFileNames: "static/js/[name]-[hash].js",
+                chunkFileNames: "static/js/[name]-[hash].js.[ext]",
                 entryFileNames: "static/js/[name]-[hash].js",
                 assetFileNames: "static/[ext]/[name]-[hash].[ext]",
                 manualChunks(id) {
