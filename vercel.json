@@ -1,20 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/(.*).gz",
-      "destination": "/",
-      "headers": {
-        "Content-Type": "application/gzip"
-      }
-    },
-    {
-      "source": "/(.*).js",
-      "destination": "/",
-      "headers": {
-        "Content-Type": "application/javascript"
-      }
-    },
-    {
       "source": "/(.*)",
       "destination": "/"
     }
