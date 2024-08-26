@@ -10,7 +10,7 @@ export default defineConfig({
         chunkSizeWarningLimit: 10240,
         rollupOptions: {
             output: {
-                chunkFileNames: "static/js/[name]-[hash].js.[ext]",
+                chunkFileNames: "static/js/[name]-[hash].js",
                 entryFileNames: "static/js/[name]-[hash].js",
                 assetFileNames: "static/[ext]/[name]-[hash].[ext]",
                 manualChunks(id) {
@@ -25,7 +25,7 @@ export default defineConfig({
                     disable: false,
                     threshold: 1024000, // 如果体积大于阈值，将被压缩，单位为b，体积过小时请不要压缩，以免适得其反
                     algorithm: 'gzip', // 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw']
-                    ext: '.gz',
+                    ext: '.js',
                     deleteOriginFile: true
                 })
             ]
