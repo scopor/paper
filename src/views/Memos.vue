@@ -15,7 +15,7 @@
             </div>
             <div class="flex justify-end">
               <div class="text-sm flex items-center">
-                <span class="mb-0.5 pr-1">❤️</span>
+                <span class="lg:mb-0.5 pr-1">❤️</span>
                 <span class="hover:text-pink-400">{{ formatGistDate(gist.created_at) }}</span></div>
             </div>
           </div>
