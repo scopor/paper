@@ -16,6 +16,7 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.10.0",
     "markdown-it-anchor": "^9.0.1",
+    "markdown-it-container": "^4.0.0",
     "markdown-it-copy-code": "^0.0.3",
     "markdown-it-diagram": "^1.0.2",
     "markdown-it-katex": "^2.0.3",
@@ -31,6 +32,7 @@
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
+    "@types/markdown-it-container": "^2.0.10",
     "@vitejs/plugin-vue": "^5.1.2",
     "@yankeeinlondon/code-builder": "^1.2.1",
     "@yankeeinlondon/link-builder": "^1.2.1",
