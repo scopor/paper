@@ -1,13 +1,5 @@
 import matter from "gray-matter";
-import MarkdownIt from "markdown-it";
-import highlight from 'highlight.js'
-import markdownItAnchor from "markdown-it-anchor";
-import markdownItMermaid from 'markdown-it-diagram'
-// @ts-ignore
-import katex from 'markdown-it-katex'
-// @ts-ignore
-import markdownItTaskLists from 'markdown-it-task-lists'
-import MarkdownItCopyCode from 'markdown-it-copy-code'
+import {md} from "./markdownIt.ts";
 
 interface PostModule {
     default: any;
@@ -25,48 +17,6 @@ export interface PostMetadata {
 }
 
 const postFiles = import.meta.glob<PostModule>('../posts/*.md', {eager: true, as: 'raw'});
-
-const md = new MarkdownIt({
-    html: true,
-    linkify: true,
-    typographer: true,
-    breaks: true,
-    xhtmlOut: true,
-    langPrefix: 'hljs language-',
-    highlight: (str: string, lang: string): string => {
-        if (lang && highlight.getLanguage(lang)) {
-            try {
-                return highlight.highlight(str, {language: lang}).value;
-            } catch (__) {
-            }
-        }
-        return md.utils.escapeHtml(str);
-    }})
-    .use(markdownItAnchor)
-    .use(markdownItMermaid, {
-        imageFormat: 'png',
-        mermaid: true,
-        showController: true,
-        ditaa: {imageFormat: 'png'}
-    })
-    .use(katex).use(markdownItTaskLists, {label: true, labelAfter: true, enabled: true})
-    .use(MarkdownItCopyCode,
-        {
-            containerClass: 'markdown-copy-code-container',
-            buttonClass: 'markdown-copy-code-button',
-            codeSVGClass: 'markdown-copy-code-code',
-            doneSVGClass: 'markdown-copy-code-done',
-        });
-md.disable('code');
-md.renderer.rules.image = (tokens, idx) => {
-    const token = tokens[idx];
-    const src = token.attrGet('src');
-    const alt = token.attrGet('alt');
-    const title = token.attrGet('title');
-
-    // 添加点击事件
-    return `<a data-fancybox="gallery" href="${src}"><img src="${src}" alt="${alt}" title="${title}"></a>`;
-};
 
 export function getPostMetadata(): PostMetadata[] {
     const posts = Object.entries(postFiles)
