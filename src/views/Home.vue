@@ -22,7 +22,7 @@
           </div>
         </p>
         <p class="mt-4">
-          <hr/>
+          <hr v-if="!(index === paginatedPosts.length - 1 && currentPage === totalPages) || !(index === paginatedPosts.length - 1 && totalPages === 1)"/>
         </p>
       </div>
       <div class="flex text-sm justify-between pt-8">
