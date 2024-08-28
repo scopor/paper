@@ -13,7 +13,7 @@
       </span>
     </div>
     <hr v-if="frontmatter.title != 'About Me' && (prevPost || nextPost)"/>
-    <div class="flex pb-8 justify-between">
+    <div class="flex pb-8 justify-between" id="nextPost">
       <span v-if="prevPost" class="hover:text-pink-300"><router-link :to="{ name: 'posts', params: { slug: prevPost.slug } }">上一篇: {{ prevPost.title }}</router-link></span>
       <span v-else></span>
       <span v-if="nextPost && frontmatter.title != 'About Me'" class="hover:text-pink-300"><router-link :to="{ name: 'posts', params: { slug: nextPost.slug } }">下一篇: {{ nextPost.title }}</router-link></span>
