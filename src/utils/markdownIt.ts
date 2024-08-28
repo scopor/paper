@@ -73,7 +73,7 @@ md.use(MarkdownItContainer, 'bilibili', {
         const m = tokens[idx].info.trim().match(/^bilibili\s+(.*)$/);
 
         if (tokens[idx].nesting === 1) {
-            return `<div id="bilibili"><iframe style="width: 100%; aspect-ratio: 16 / 9;" src="//player.bilibili.com/player.html?isOutside=1&bvid=` + md.utils.escapeHtml(m[1]) + `&p=1&autoplay=1&high_quality=1&as_wide=1&muted=0&danmaku=0"></iframe></div>`;
+            return `<div id="bilibili"><iframe style="width: 100%; aspect-ratio: 16 / 9;" src="//player.bilibili.com/player.html?isOutside=1&bvid=` + md.utils.escapeHtml(m[1]) + `&p=1&autoplay=1&high_quality=1&as_wide=1&muted=0&danmaku=0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe></div>`;
         } else {
             return "";
         }
