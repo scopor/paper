@@ -25,7 +25,7 @@
           <hr v-if="!(index === paginatedPosts.length - 1 && currentPage === totalPages) || !(index === paginatedPosts.length - 1 && totalPages === 1)"/>
         </p>
       </div>
-      <div class="flex text-sm justify-between pt-8">
+      <div class="flex text-sm justify-between pt-8" id="pagination">
         <button @click="prevPage" :disabled="currentPage === 1" class="text-black hover:text-pink-400">
           {{ currentPage === 1 ? "&nbsp" : "返回上一页" }}
         </button>
