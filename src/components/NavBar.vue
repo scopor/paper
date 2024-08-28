@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white text-black container mx-auto px-8 lg:px-16 pt-20">
+  <header class="bg-white text-black container mx-auto px-8 lg:px-16 pt-20" id="NavBar">
     <nav class="flex justify-between mb-10">
       <h1 class="text-3xl font-bold hover:text-pink-400"><router-link to="/" @click="goHome">微山<br>澜水</router-link></h1>
       <ul class="flex space-x-4 lg:space-x-8 mt-6">
