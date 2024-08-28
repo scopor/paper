@@ -59,8 +59,26 @@
 
     /* 打印样式 */
     @media print {
-        #blog * {
-            display: block; /* 仅显示可打印区域 */
+        #Footer * {
+            display: none;
+        }
+        #NavBar * {
+            display: none;
+        }
+        #backToTop * {
+            display: none;
+        }
+        .back-to-top {
+            display: none;
+        }
+        #nextPost * {
+            display: none;
+        }
+        #pagination * {
+            display: none;
+        }
+        #shadowApp {
+            box-shadow: none;
         }
     }
 </style>
