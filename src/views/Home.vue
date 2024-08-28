@@ -7,9 +7,9 @@
             {{ post.title }}
           </router-link>
         </h1>
-        <p v-if="post.frontmatter?.cover"><img :src=" post.frontmatter?.cover " alt=""/></p>
-        <p class="font-serif mt-2" v-html="post.description"></p>
-        <p class="flex justify-start items-center">
+        <div v-if="post.frontmatter?.cover"><img :src=" post.frontmatter?.cover " alt=""/></div>
+        <div class="font-serif mt-2" v-html="post.description"></div>
+        <div class="flex justify-start items-center">
           <div class="flex flex-wrap justify-start items-center">
             <span v-if="post.date" class='gg-heart text-pink-400 text-xs lg:text-sm'/>
             <span class="text-xs lg:text-sm text-gray-400 hover:text-pink-400 pl-2">
@@ -20,10 +20,10 @@
               <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
             </div>
           </div>
-        </p>
-        <p class="mt-4">
+        </div>
+        <div class="mt-4">
           <hr v-if="!(index === paginatedPosts.length - 1 && currentPage === totalPages) || !(index === paginatedPosts.length - 1 && totalPages === 1)"/>
-        </p>
+        </div>
       </div>
       <div class="flex text-sm justify-between pt-8" id="pagination">
         <button @click="prevPage" :disabled="currentPage === 1" class="text-black hover:text-pink-400">
