@@ -8,6 +8,7 @@ import katex from 'markdown-it-katex'
 import markdownItTaskLists from 'markdown-it-task-lists'
 import MarkdownItCopyCode from 'markdown-it-copy-code'
 import MarkdownItContainer from 'markdown-it-container';
+import { full as emoji } from 'markdown-it-emoji'
 
 export const md = new MarkdownIt({
     html: true,
@@ -37,6 +38,8 @@ md.use(markdownItMermaid, {
 });
 
 md.use(katex);
+
+md.use(emoji, { "smile": [ ":)", ":-)" ], "laughing": ":D" });
 
 md.use(markdownItTaskLists, {label: true, labelAfter: true, enabled: true});
 
