@@ -22,7 +22,7 @@
             <router-link to="/about">关于</router-link>
           </li>
         </ul>
-        <ul class="flex justify-items-center justify-end mt-2 text-sm">
+        <ul class="flex justify-items-center justify-end mt-2 space-x-4 text-sm">
           <li class="hover:text-pink-400">
             <a href="https://twitter.com/DesperadoYan" target="_blank">
               <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
