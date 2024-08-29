@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-8 lg:px-16 py-10">
+  <div class=" mt-24 mx-auto px-8 lg:px-16 space-y-8">
     <h1 class="text-2xl font-bold font-sans my-4 text-pink-400">Memos</h1>
     <div v-if="gists.length === 0">Nothing</div>
     <ul>
