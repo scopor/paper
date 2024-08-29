@@ -1,27 +1,31 @@
 <template>
-  <main class="container mx-auto px-8 lg:px-16 py-10">
+  <main class="container mt-24 mx-auto px-8 lg:px-16 space-y-8">
     <div class="flex flex-col">
-      <div v-for="(post, index) in paginatedPosts" :key="post.slug" class="bg-white py-4 transition-shadow duration-300 space-y-8">
-        <h1 class="text-2xl">
+      <div v-for="(post, index) in paginatedPosts" :key="post.slug" class="bg-white transition-shadow duration-300 space-y-8">
+        <h1 class="text-2xl font-bold">
           <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="font-sans hover:text-pink-400">
             {{ post.title }}
           </router-link>
         </h1>
         <div v-if="post.frontmatter?.cover"><img :src=" post.frontmatter?.cover " alt=""/></div>
-        <div class="font-serif mt-2" v-html="post.description"></div>
-        <div class="flex justify-start items-center">
-          <div class="flex flex-wrap justify-start items-center">
-            <span v-if="post.date" class='gg-heart text-pink-400 text-xs lg:text-sm'/>
-            <span class="text-xs lg:text-sm text-gray-400 hover:text-pink-400 pl-2">
+        <div class="font-serif pb-4" v-html="post.description"></div>
+        <div class="flex">
+          <div class="flex flex-wrap justify-start items-center align-center">
+            <span v-if="post.date" class='text-pink-400 text-xs'>
+              <img src="/heart.png" alt=""/>
+            </span>
+            <span class="text-xs text-gray-400 hover:text-pink-400 pl-2">
               {{ formattedDate(post.date) }}
             </span>
-            <span v-if="post.tags && post.tags.length" class='gg-tag text-pink-400 text-xs lg:text-sm ml-4'/>
-            <div class="flex flex-wrap text-xs lg:text-sm text-gray-400 hover:text-pink-400 ml-2 " v-for="tag in post.tags" :key="tag">
+            <span v-if="post.tags && post.tags.length" class='text-pink-400 text-xs ml-4 transform rotate-90'>
+              <img src="/tag.png" alt=""/>
+            </span>
+            <div class="flex flex-wrap text-xs text-gray-400 hover:text-pink-400 ml-4 " v-for="tag in post.tags" :key="tag">
               <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
             </div>
           </div>
         </div>
-        <div class="mt-4">
+        <div class="pb-8">
           <hr v-if="!(index === paginatedPosts.length - 1 && currentPage === totalPages) || !(index === paginatedPosts.length - 1 && totalPages === 1)"/>
         </div>
       </div>
@@ -47,7 +51,7 @@ const store = useStore()
 const allPosts = ref<PostMetadata[]>([])
 const recentPosts = ref<PostMetadata[]>([])
 const currentPage = ref(1)
-const postsPerPage = 3
+const postsPerPage = 5
 let totalPages = ref(0);
 
 onMounted(() => {
@@ -81,5 +85,4 @@ watch(() => store.page, (newPage) => {
 </script>
 
 <style scoped>
-/* 可以在这里添加更多样式 */
 </style>
