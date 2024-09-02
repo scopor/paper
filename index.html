@@ -64,25 +64,8 @@
     }
 </style>
 <script>
-    // 获取按钮元素
-    const backToTopButton = document.getElementById('backToTop');
-
-    // 当用户滚动到一定位置时显示按钮
-    window.onscroll = function() {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            backToTopButton.style.display = "flex"; // 显示按钮
-        } else {
-            backToTopButton.style.display = "none"; // 隐藏按钮
-        }
-    };
-
-    // 点击按钮返回顶部
-    backToTopButton.onclick = function() {
-        window.scrollTo({top: 0, behavior: 'smooth'}); // 平滑滚动到顶部
-    };
-
-    $(document).ready(function() {
-        $('[data-fancybox="gallery"]').fancybox();
-    });
+$(document).ready(function() {
+    $('[data-fancybox="gallery"]').fancybox();
+});
 </script>
 </html>
