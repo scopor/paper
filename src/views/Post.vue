@@ -29,6 +29,8 @@ import {markdownItDiagramDom} from 'markdown-it-diagram/dom'
 import mermaid from 'mermaid'
 import {useCopyCode} from 'markdown-it-copy-code'
 import {formattedDate} from "../utils/date.ts";
+import {useTitle} from '@vueuse/core'
+import {useHead} from "@unhead/vue";
 
 const content = ref<any>(null)
 const route = useRoute()
@@ -72,6 +74,19 @@ onMounted( () => {
   updatePosts(slug);
   useCopyCode();
 });
+
+const title = computed(() => {
+  return !frontmatter.value.title ? '微山澜水' : `${frontmatter.value.title} | 微山澜水`
+})
+
+useHead({
+  meta: [
+    {name: 'description', content: () => frontmatter.value.description},
+    {name: 'keywords', content: () => frontmatter.value.tags?.slice(', ').toString()},
+  ],
+})
+
+useTitle(title)
 </script>
 
 <style scoped>
