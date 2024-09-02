@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col justify-items-center items-center">
-    <div class="flex flex-col lg:w-2/5 w-full bg-white lg:my-16 shadow-md">
+    <div class="flex flex-col lg:w-2/5 w-full bg-white my-16 shadow-md">
       <div>
         <NavBar></NavBar>
         <router-view id="Page"/>
