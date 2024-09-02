@@ -8,7 +8,9 @@ import 'markdown-it-copy-code/styles/base.css'
 import 'markdown-it-copy-code/styles/medium.css'
 import 'prismjs/themes/prism-coy.css'
 import App from './App.vue'
+import { createHead } from '@unhead/vue'
 
-export const pinia = createPinia()
+const head = createHead()
+const pinia = createPinia()
 
-createApp(App).use(router).use(pinia).mount('#app')
+createApp(App).use(router).use(pinia).use(head).mount('#app')
