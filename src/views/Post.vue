@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import {onBeforeMount, onMounted, ref, watch} from 'vue'
+import {computed, onBeforeMount, onMounted, ref, watch} from 'vue'
 import {useRoute} from 'vue-router'
 import {getPostContent, getPostMetadata, PostMetadata} from '../utils/posts'
 import {markdownItDiagramDom} from 'markdown-it-diagram/dom'
