@@ -2,9 +2,7 @@ import MarkdownIt from "markdown-it";
 import {highlight} from './highlight.ts'
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItMermaid from 'markdown-it-diagram'
-// @ts-ignore
 import katex from 'markdown-it-katex'
-// @ts-ignore
 import markdownItTaskLists from 'markdown-it-task-lists'
 import MarkdownItCopyCode from 'markdown-it-copy-code'
 import MarkdownItContainer from 'markdown-it-container';
