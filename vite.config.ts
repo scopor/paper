@@ -67,13 +67,25 @@ export default defineConfig({
             transformIndexHtml: {
                 enforce: 'post', // 确保在其他处理之后执行
                 async transform(html) {
-                    console.log("html:" + html)
-                    // 这里可以对 html 进行修改
-                    // 例如，添加一个 meta 标签
                     html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/(?!index-)[^.]+\.js)">/g,
-                        (_, url) => `<script defer async type="module" src="${url}"></script>`
+                        (_, url) => `<script defer async src="${url}"></script>`
                     );
-                    return html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/index-[^.]+\.js)">/g, '');
+                    html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/index-[^.]+\.js)">/g, '');
+
+
+                    const linkToMove = html.match(/<link rel="stylesheet" crossorigin href="\/assets\/style-[^.]+\.css">/g) || [];
+                    html = html.replace(/<link rel="stylesheet" crossorigin href="\/assets\/style-[^.]+\.css">/g, '');
+                    html = html.replace(/(<meta charset="UTF-8"\/>)/, (match) => {
+                        return `${match}\n${linkToMove.join('\n')}`;
+                    });
+
+                    // 将所有带有 defer 和 async 属性的 <script> 标签移动到 </body> 之后
+                    const scriptsToMove = html.match(/<script defer async src="([^"]+)"><\/script>/g) || [];
+                    html = html.replace(/<script defer async src="([^"]+)"><\/script>/g, '');
+                    html = html.replace(/(<\/body>)/, (match) => {
+                        return `${match}\n${scriptsToMove.join('\n')}`;
+                    });
+                    return html.replace(/^\s*[\r\n]/gm, '');
                 }
             }
         }
