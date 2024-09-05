@@ -71,7 +71,7 @@ export default defineConfig({
                     // 这里可以对 html 进行修改
                     // 例如，添加一个 meta 标签
                     html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/(?!index-)[^.]+\.js)">/g,
-                        (_, url) => `<script defer async src="${url}"></script>`
+                        (_, url) => `<script defer async type="module" src="${url}"></script>`
                     );
                     return html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/index-[^.]+\.js)">/g, '');
                 }
