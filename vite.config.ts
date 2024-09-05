@@ -73,6 +73,7 @@ export default defineConfig({
                     // html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/*\.js)">/g, '');
                     // html = html.replace(/<link rel="modulepreload" as="script" crossorigin href="(\/assets\/*\.js)">/g, '');
                     html = html.replace(/<link rel="modulepreload"[^>]*>/g, '');
+                    html = html.replace(/<link rel="modulepreload" as="script" crossorigin href="\/assets\/[^"]+\.js">/g, '');
 
 
                     const linkToMove = html.match(/<link rel="stylesheet" crossorigin href="\/assets\/style-[^.]+\.css">/g) || [];
