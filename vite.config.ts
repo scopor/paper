@@ -4,7 +4,7 @@ import {nodePolyfills} from "vite-plugin-node-polyfills";
 
 export default defineConfig({
     build: {
-        minify: "esbuild",
+        minify: "terser",
         chunkSizeWarningLimit: 10240,
         rollupOptions: {
             output: {
