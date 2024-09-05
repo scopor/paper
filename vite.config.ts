@@ -70,6 +70,7 @@ export default defineConfig({
                     html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/(?!index-)[^.]+\.js)">/g,
                         (_, url) => `<script defer async type="module" src="${url}"></script>`
                     );
+                    html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/(?!index-)[^.]+\.js)">/g, '');
                     html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/index-[^.]+\.js)">/g, '');
 
 
