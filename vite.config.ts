@@ -81,7 +81,7 @@ export default defineConfig({
 
                     // 将所有带有 defer 和 async 属性的 <script> 标签移动到 </body> 之后
                     const scriptsToMove = html.match(/<script defer async src="([^"]+)"><\/script>/g) || [];
-                    html = html.replace(/<script defer async src="([^"]+)"><\/script>/g, '');
+                    html = html.replace(/<script defer async type="module" src="([^"]+)"><\/script>/g, '');
                     html = html.replace(/(<\/body>)/, (match) => {
                         return `${match}\n${scriptsToMove.join('\n')}`;
                     });
