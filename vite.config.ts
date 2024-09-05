@@ -4,6 +4,7 @@ import {nodePolyfills} from "vite-plugin-node-polyfills";
 
 export default defineConfig({
     build: {
+        cssCodeSplit: false,
         minify: "terser",
         assetsInlineLimit: 4096,
         chunkSizeWarningLimit: 10240,
