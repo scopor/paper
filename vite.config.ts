@@ -15,6 +15,13 @@ export default defineConfig({
                 }
             },
             plugins: []
+        },
+        terserOptions: {
+            sourceMap: false,
+            compress: {
+                drop_console: true,
+                drop_debugger: true
+            }
         }
     },
     optimizeDeps: {
