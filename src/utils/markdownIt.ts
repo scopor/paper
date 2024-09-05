@@ -1,5 +1,5 @@
 import MarkdownIt from "markdown-it";
-import {highlight} from 'highlight.ts'
+import {highlight} from './highlight.ts'
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItMermaid from 'markdown-it-diagram'
 import katex from 'markdown-it-katex'
