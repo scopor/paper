@@ -5,6 +5,7 @@ import {nodePolyfills} from "vite-plugin-node-polyfills";
 export default defineConfig({
     build: {
         minify: "terser",
+        assetsInlineLimit: 4096,
         chunkSizeWarningLimit: 10240,
         rollupOptions: {
             output: {
