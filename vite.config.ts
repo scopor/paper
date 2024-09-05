@@ -9,39 +9,10 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks(id) {
-                    // if (id.includes('node_modules')) {
-                    //    id.toString().split("node_modules/")[1].split("/")[0].toString();
-                    // }
                     if (id.includes('node_modules')) {
-                        const chunk = id.toString().split("node_modules/")[1].split("/")[0].toString();
-
-                        const chunkMap: { [key: string]: string } = {
-                            'd3': 'd3',
-                            'lodash': 'lodash',
-                            'gray-matter': 'gray-matter',
-                            'micromark': 'micromark',
-                            'katex': 'katex',
-                            'markdown': 'markdown',
-                            'flowchart': 'flowchart',
-                            'mermaid': 'mermaid',
-                            'highlight': 'highlight',
-                            'cytoscape': 'cytoscape',
-                            'elkjs': 'elkjs'
-                        };
-
-                        // 检查chunk是否在chunkMap中
-                        for (const key in chunkMap) {
-                            if (chunk.includes(key)) {
-                                if (key === 'mermaid' && id.includes('Diagram')) {
-                                    return "diagram";
-                                }
-                                return chunkMap[key];
-                            }
-                        }
-                        return "vendor";
-                    } else {
-                        return "index";
+                       return id.toString().split("node_modules/")[1].split("/")[0].toString();
                     }
+                    return "index";
                 }
             },
             plugins: []
