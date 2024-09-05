@@ -1,5 +1,5 @@
 import MarkdownIt from "markdown-it";
-import highlight from 'highlight.js'
+import {highlight} from 'highlight.ts'
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItMermaid from 'markdown-it-diagram'
 import katex from 'markdown-it-katex'
@@ -39,7 +39,7 @@ md.use(katex);
 
 md.use(emoji, { "smile": [ ":)", ":-)" ], "laughing": ":D" });
 
-md.use(markdownItTaskLists, {label: true, labelAfter: true, enabled: true});
+md.use(markdownItTaskLists, {label: true, labelAfter: false, enabled: true});
 
 md.use(MarkdownItCopyCode,
     {
