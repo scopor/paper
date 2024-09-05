@@ -12,7 +12,6 @@ export interface PostMetadata {
     date: string
     description: string
     tags: string[],
-    content: string,
     frontmatter: any
 }
 
@@ -32,7 +31,6 @@ export function getPostMetadata(): PostMetadata[] {
                 date: postMatter.data.date || '2024-01-01 00:00:00 +8:00',
                 description: md.render(postMatter.data.description) || '',
                 tags: postMatter.data.tags || [],
-                content: postMatter.content,
                 frontmatter: postMatter.data
             }
         }).filter((item: PostMetadata)=> {
