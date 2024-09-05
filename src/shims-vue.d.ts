@@ -9,3 +9,7 @@ declare module '*.md' {
     const Component: ComponentOptions
     export default Component
 }
+
+declare module 'markdown-it-katex';
+
+declare module 'markdown-it-task-lists';
