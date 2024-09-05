@@ -62,5 +62,20 @@ export default defineConfig({
         vue({
             include: [/\.vue$/],
         }),
+        {
+            name: 'html-transform',
+            transformIndexHtml: {
+                enforce: 'post', // 确保在其他处理之后执行
+                async transform(html) {
+                    console.log("html:" + html)
+                    // 这里可以对 html 进行修改
+                    // 例如，添加一个 meta 标签
+                    html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/(?!index-)[^.]+\.js)">/g,
+                        (_, url) => `<script defer async src="${url}"></script>`
+                    );
+                    return html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/index-[^.]+\.js)">/g, '');
+                }
+            }
+        }
     ],
 })
