@@ -1,7 +1,7 @@
 <template>
   <main class="container mt-24 mx-auto px-8 lg:px-16 space-y-8">
     <div class="flex flex-col">
-      <div v-for="(post, index) in paginatedPosts" :key="post.slug" class="bg-white transition-shadow duration-300 space-y-8">
+      <div v-for="(post, index) in paginatedPosts" :key="post.slug" class="bg-white transition-shadow duration-300 space-y-8" @click="preview(post.slug)">
         <h1 class="text-2xl font-bold">
           <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="font-sans hover:text-pink-400">
             {{ post.title }}
@@ -46,6 +46,7 @@ import {computed, onMounted, ref, watch} from 'vue'
 import {getPostMetadata, PostMetadata} from '../utils/posts'
 import {useStore} from '../store'
 import {formattedDate} from "../utils/date.ts";
+import router from "../router";
 
 const store = useStore()
 const allPosts = ref<PostMetadata[]>([])
@@ -65,6 +66,11 @@ const paginatedPosts = computed(() => {
   const end = start + postsPerPage
   return allPosts.value.slice(start, end)
 })
+
+const preview = (slug: string) => {
+  router.push(`/posts/${slug}`)
+}
+
 
 const prevPage = () => {
   if (currentPage.value > 1) {
