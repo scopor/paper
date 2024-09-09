@@ -61,36 +61,6 @@ export default defineConfig({
         nodePolyfills(),
         vue({
             include: [/\.vue$/],
-        }),
-        {
-            name: 'html-transform',
-            transformIndexHtml: {
-                enforce: 'post', // 确保在其他处理之后执行
-                async transform(html) {
-                    html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/(?!index-)[^.]+\.js)">/g,
-                        (_, url) => `<script defer async type="module" src="${url}"></script>`
-                    );
-                    // html = html.replace(/<link rel="modulepreload" crossorigin href="(\/assets\/*\.js)">/g, '');
-                    // html = html.replace(/<link rel="modulepreload" as="script" crossorigin href="(\/assets\/*\.js)">/g, '');
-                    html = html.replace(/<link rel="modulepreload"[^>]*>/g, '');
-                    html = html.replace(/<link rel="modulepreload" as="script" crossorigin href="\/assets\/[^"]+\.js">/g, '');
-
-
-                    const linkToMove = html.match(/<link rel="stylesheet" crossorigin href="\/assets\/style-[^.]+\.css">/g) || [];
-                    html = html.replace(/<link rel="stylesheet" crossorigin href="\/assets\/style-[^.]+\.css">/g, '');
-                    html = html.replace(/(<meta charset="UTF-8"\/>)/, (match) => {
-                        return `${match}\n${linkToMove.join('\n')}`;
-                    });
-
-                    // 将所有带有 defer 和 async 属性的 <script> 标签移动到 </body> 之后
-                    const scriptsToMove = html.match(/<script defer async type="module" src="([^"]+)"><\/script>/g) || [];
-                    html = html.replace(/<script defer async type="module" src="([^"]+)"><\/script>/g, '');
-                    html = html.replace(/(<\/body>)/, (match) => {
-                        return `${match}\n${scriptsToMove.join('\n')}`;
-                    });
-                    return html.replace(/^\s*[\r\n]/gm, '');
-                }
-            }
-        }
+        })
     ],
 })
