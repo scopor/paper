@@ -3,11 +3,11 @@
     <h1 class="text-2xl font-bold font-sans text-pink-400">{{ frontmatter.title }}</h1>
     <div v-html="content" class="font-serif postContent container markdown-body"></div>
     <div class="flex flex-wrap space-x-4 items-center">
-      <span v-if="frontmatter.date" class='text-pink-400 text-xs lg:text-sm ml-1 -mr-2'><img src="/heart.png" alt=""/></span>
+      <span v-if="frontmatter.date" class='text-pink-400 text-xs lg:text-sm -mr-2'><img src="/heart.png" alt=""/></span>
       <span class="text-xs lg:text-sm text-gray-400 items-center text-center">
          {{ formattedDate(frontmatter.date) }}
       </span>
-      <span v-if="frontmatter.tags" class='gg-tag text-pink-400 text-xs ml-4 transform rotate-90'><img src="/tag.png" alt=""/></span>
+      <span v-if="frontmatter.tags" class='text-pink-400 text-xs ml-4 transform rotate-90'><img src="/tag.png" alt=""/></span>
       <span v-for="tag in frontmatter.tags" :key="tag" class="text-xs lg:text-sm text-gray-400 hover:text-pink-400 ml-4">
         <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
       </span>
