@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col justify-items-center items-center">
-    <div class="flex flex-col lg:w-2/5 w-full bg-white my-16 shadow-md">
+    <div class="flex flex-col lg:w-2/5 w-full bg-white shadow-md">
       <div>
         <NavBar></NavBar>
-        <router-view id="Page"/>
-      </div>
+      </div class="sticky top-0 z-50 bg-white">
+      <router-view id="Page"/>
       <Footer></Footer>
     </div>
   </div>
