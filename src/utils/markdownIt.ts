@@ -18,11 +18,12 @@ export const md = new MarkdownIt({
     highlight: (str: string, lang: string): string => {
         if (lang && highlight.getLanguage(lang)) {
             try {
-                return highlight.highlight(str, {language: lang}).value;
+                return `<pre class="hljs flex flex-col"><span class="mb-2 -mt-4 font-thin text-pink-400 py-2" style="user-select: none">${lang}</span><code>${highlight.highlight(lang, str, true).value}</code></pre>`;
             } catch (__) {
+                return `<pre class="hljs flex flex-col"><span class="mb-2 -mt-4 font-thin text-pink-400 py-2" style="user-select: none">${lang}</span><code>${md.utils.escapeHtml(str)}</code></pre>`;
             }
         }
-        return md.utils.escapeHtml(str);
+        return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
     }
 });
 
