@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col justify-items-center items-center">
     <div class="flex flex-col lg:w-2/5 w-full bg-white shadow-md">
-      <div>
+      <div class="sticky top-0 z-50 bg-white">
         <NavBar></NavBar>
-      </div class="sticky top-0 z-50 bg-white">
+      </div>
       <router-view id="Page"/>
       <Footer></Footer>
     </div>
