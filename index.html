@@ -77,5 +77,15 @@ $(document).ready(function() {
             print-color-adjust: exact;
         }
     }
+
+    html {
+        overflow-y: scroll; /* 确保页面可以滚动 */
+        -ms-overflow-style: none !important;  /* IE and Edge */
+        scrollbar-width: none !important;  /* Firefox */
+    }
+
+    html::-webkit-scrollbar {
+        display: none !important;  /* Chrome, Safari and Opera */
+    }
 </style>
 </html>
