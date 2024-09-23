@@ -1,10 +1,10 @@
 <template>
   <div class="container bg-white mx-auto px-8 lg:px-16 space-y-8">
-    <div class="flex flex-wrap mt-24 justify-start space-x-8">
+    <div class="flex flex-wrap mt-24 justify-content-start">
       <div
           v-for="tag in tags"
           :key="tag.name"
-          :class="['cursor-pointer', 'text-black font-sans', 'flex', 'items-start', currentTag === tag.name ? 'font-bold text-pink-400' : '']"
+          :class="['cursor-pointer text-black font-sans flex items-start border border-gray-50 px-4 mb-2 mr-4 bg-gray-50', currentTag === tag.name ? 'font-bold text-pink-400' : '']"
           @click="selectTag(tag.name)">
         <span class="py-1">{{ tag.name }}</span>
         <span class="py-0 text-xs">{{ tag.count }}</span>
