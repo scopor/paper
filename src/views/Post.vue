@@ -76,7 +76,7 @@ onMounted( () => {
 });
 
 const title = computed(() => {
-  return !frontmatter.value.title ? '微山澜水' : `${frontmatter.value.title} | 微山澜水`
+  return !frontmatter.value.title ? 'Vinlane' : `${frontmatter.value.title} | Vinlane`
 })
 
 useHead({
