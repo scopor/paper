@@ -2,24 +2,24 @@
   <header class="bg-white text-black container mx-auto px-8 lg:px-16 pt-20 pb-16" id="NavBar">
     <nav class="flex justify-between align-center items-center">
       <h1 class="text-3xl font-bold hover:text-pink-400">
-        <router-link to="/" @click="goHome">微山<br>澜水</router-link>
+        <router-link to="/" @click="goHome">Vinlane</router-link>
       </h1>
       <div class="flex flex-col justify-end">
         <ul class="flex justify-end space-x-4 lg:space-x-4 text-sm">
           <li class="hover:text-pink-400">
-            <router-link to="/" @click="goHome">首页</router-link>
+            <router-link to="/" @click="goHome">Home</router-link>
           </li>
           <li class="hover:text-pink-400">
-            <router-link to="/archive" @click="goArchive">归档</router-link>
+            <router-link to="/archive" @click="goArchive">Archive</router-link>
           </li>
           <li class="hover:text-pink-400">
-            <router-link to="/tag">标签</router-link>
+            <router-link to="/tag">Tags</router-link>
           </li>
           <li class="hover:text-pink-400">
             <router-link to="/memos" @click="goMemos">Memos</router-link>
           </li>
           <li class="hover:text-pink-400">
-            <router-link to="/about">关于</router-link>
+            <router-link to="/about">About</router-link>
           </li>
         </ul>
         <ul class="flex justify-items-center justify-end mt-2 space-x-4 text-sm">
