@@ -5,7 +5,7 @@
         <router-link to="/" @click="goHome">Vinlane</router-link>
       </h1>
       <div class="flex flex-col justify-end">
-        <ul class="flex justify-end space-x-4 lg:space-x-4 text-sm">
+        <ul class="flex justify-end space-x-4 lg:space-x-4 text-sm font-bold">
           <li class="hover:text-pink-400">
             <router-link to="/" @click="goHome">Home</router-link>
           </li>
