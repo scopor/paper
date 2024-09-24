@@ -9,21 +9,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 </head>
-<body  class="bg-black">
-<div id="app"></div>
-<script type="module" src="/src/main.ts"></script>
+<body class="bg-black">
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
 </body>
 <script>
-$(document).ready(function() {
-    $('[data-fancybox="gallery"]').fancybox();
-});
+    $(document).ready(function() {
+        $('[data-fancybox="gallery"]').fancybox();
+    });
 </script>
 <style>
-    .markdown-body ul li {
-        list-style-type: disc;
-        padding-left: 5px;
-    }
-
     .markdown-body h2:hover {
         color: rgb(244 114 182);
     }
@@ -39,13 +34,12 @@ $(document).ready(function() {
         height: 0.01em
     }
 
-    header, h1 {
-        font-family: Times, serif;
+    .markdown-body pre {
+        border-radius: 0;
     }
 
-    #app p {
-        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-        line-height: 2em;
+    header, h1 {
+        font-family: Times, serif;
     }
 
     .katex-html {
