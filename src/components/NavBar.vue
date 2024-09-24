@@ -1,7 +1,7 @@
 <template>
   <header class="bg-white text-black container mx-auto px-8 lg:px-16 pt-20 pb-16" id="NavBar">
     <nav class="flex justify-between align-center items-center">
-      <h1 class="text-3xl font-bold hover:text-pink-400">
+      <h1 class="text-2xl md:text-3xl font-bold hover:text-pink-400">
         <router-link to="/" @click="goHome">Vinlane</router-link>
       </h1>
       <div class="flex flex-col justify-end">
