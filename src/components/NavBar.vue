@@ -2,7 +2,7 @@
   <header class="bg-white text-black container mx-auto px-8 lg:px-16 pt-20 pb-16" id="NavBar">
     <nav class="flex justify-between align-center items-center">
       <h1 class="text-2xl md:text-3xl font-bold hover:text-pink-400">
-        <router-link to="/" @click="goHome"><span class="hidden md:block">Vinlane</span><a class="md:hidden" href="/" ><span class="rounded-full text-pink-400 border px-3.5 py-2.5 -ml-1.5">V</span></a></router-link>
+        <router-link to="/" @click="goHome"><span class="hidden md:block">Vinlane</span><a class="md:hidden" href="/" ><span class="rounded-full text-pink-400 border-pink-400 px-4 py-3 -ml-1.5">V</span></a></router-link>
       </h1>
       <div class="flex flex-col justify-end">
         <ul class="flex justify-end space-x-4 lg:space-x-4 text-sm font-bold">
