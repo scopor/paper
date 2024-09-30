@@ -57,9 +57,10 @@ const fetchGists = async (page: number) => {
 
   try {
     const response = await fetch(`/api/gists?username=${username}&page=${page}&per_page=${pageSize}`);
+    console.log(JSON.stringify(response));
     if (!response.ok) {
       console.log(`Fetching gists for page ${page}`);
-      throw new Error('Failed to fetch gists');
+      return;
     }
     const data = await response.json();
     console.log('Received data:', data);
