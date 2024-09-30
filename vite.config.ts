@@ -44,7 +44,7 @@ export default defineConfig({
         terserOptions: {
             sourceMap: false,
             compress: {
-                drop_console: true,
+                drop_console: false,
                 drop_debugger: true
             }
         }
