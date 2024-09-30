@@ -52,9 +52,6 @@ const hasNextPage = ref(false)
 const memoses = reactive<string[]>([]);
 const store = useStore()
 
-const GIST_TOKEN = import.meta.env.VITE_GIST_TOKEN;
-const octokit = new Octokit({auth: GIST_TOKEN})
-
 const fetchGists = async (page: number) => {
   if (page < 1) return
 
