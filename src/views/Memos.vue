@@ -59,25 +59,29 @@ const octokit = new Octokit({auth: GIST_TOKEN})
 const fetchGists = async (page: number) => {
   if (page < 1) return
 
-  const response = await octokit.gists.listForUser({
-    username,
-    page,
-    per_page: pageSize,
-  })
+  try {
+    const response = await fetch(`/api/gists?username=${username}&page=${page}&per_page=${pageSize}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch gists');
+    }
+    const data = await response.json();
 
-  gists.value = response.data
-  const link = response.headers.link || null
-  hasNextPage.value = link == null ? false : link.split(',').filter(link => link.includes('rel="next"')).length > 0
-  currentPage.value = page
+    gists.value = data.gists;
+    hasNextPage.value = data.hasNextPage;
+    currentPage.value = page;
 
-  const memosContentsPromises = gists.value.map(async (gist) => {
-    return getMemosContent(gist.files[Object.keys(gist.files)[0]].raw_url);
-  });
+    const memosContentsPromises = gists.value.map(async (gist) => {
+      return getMemosContent(gist.files[Object.keys(gist.files)[0]].raw_url);
+    });
 
-  memosContents.value = await Promise.all(memosContentsPromises);
-  memosContents.value.map((memos, index) => {
-    memoses[index] = getMemos(memos)
-  })
+    memosContents.value = await Promise.all(memosContentsPromises);
+    memosContents.value.map((memos, index) => {
+      memoses[index] = getMemos(memos)
+    })
+  } catch (error) {
+    console.error('Error fetching gists:', error);
+    // 在这里可以添加错误处理，例如显示错误消息给用户
+  }
 }
 
 async function getMemosContent(memosPath: string): Promise<string> {
