@@ -7,6 +7,16 @@ const octokit = new Octokit({ auth: GIST_TOKEN });
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const { username, page, per_page } = req.query;
 
+  // 添加 CORS 头
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // 如果是 OPTIONS 请求，直接返回 200
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (!username || typeof username !== 'string') {
     return res.status(400).json({ error: 'Username is required' });
   }
