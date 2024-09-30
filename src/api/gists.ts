@@ -5,6 +5,7 @@ const GIST_TOKEN = process.env.GIST_TOKEN;
 const octokit = new Octokit({ auth: GIST_TOKEN });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  console.log('API route called with query:', req.query);
   const { username, page, per_page } = req.query;
 
   // 添加 CORS 头
@@ -21,7 +22,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Username is required' });
   }
 
+  if (!GIST_TOKEN) {
+    console.error('GIST_TOKEN is not set');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
+
   try {
+    console.log(`Fetching gists for user: ${username}, page: ${page}, per_page: ${per_page}`);
     const response = await octokit.gists.listForUser({
       username,
       page: page ? parseInt(page as string) : 1,
@@ -31,6 +38,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const gists = response.data;
     const link = response.headers.link || '';
     const hasNextPage = link.split(',').some(link => link.includes('rel="next"'));
+
+    console.log(`Fetched ${gists.length} gists, hasNextPage: ${hasNextPage}`);
 
     res.status(200).json({
       gists,
