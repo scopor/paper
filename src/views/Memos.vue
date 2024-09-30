@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 import {nextTick, onMounted, reactive, ref, watch} from 'vue'
-import {Octokit} from "@octokit/rest";
 import {formatGistDate} from "../utils/date.ts";
 import {getMemos} from "../utils/posts.ts";
 import {useCopyCode} from 'markdown-it-copy-code'
