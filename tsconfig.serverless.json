@@ -1,10 +1,14 @@
 {
-  "extends": "./tsconfig.app.json",
   "compilerOptions": {
+    "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
-    "allowImportingTsExtensions": false,
-    "noEmit": false
+    "esModuleInterop": true, // Important for compatibility
+    "outDir": "./dist-serverless",
+    "noEmit": false, // Must generate JS files
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": ["ES2022"] // Remove DOM and DOM.Iterable, not needed for serverless
   },
   "include": ["api/**/*.ts"]
 }
