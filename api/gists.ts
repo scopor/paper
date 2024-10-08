@@ -35,6 +35,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       per_page: per_page ? parseInt(per_page as string) : 5,
     });
 
+    console.log(JSON.stringify(response));
+
     const gists = response.data;
     const link: string = response.headers.link || '';
     const hasNextPage = link.split(',').some(link => link.includes('rel="next"'));
