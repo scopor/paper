@@ -42,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     const gists = response.data;
-    const link = response.headers.link || '';
+    const link: string = response.headers.link || '';
     const hasNextPage = link.split(',').some(link => link.includes('rel="next"'));
 
     console.log(`Fetched ${gists.length} gists, hasNextPage: ${hasNextPage}`);
