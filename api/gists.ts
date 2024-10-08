@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { Octokit } from '@octokit/rest';
+import type { Octokit } from '@octokit/rest';
 
 const GIST_TOKEN = process.env.GIST_TOKEN;
 const octokit = new Octokit({ auth: GIST_TOKEN });
@@ -36,7 +36,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     const gists = response.data;
-    const link = response.headers.link || '';
+    const link: string = response.headers.link || '';
     const hasNextPage = link.split(',').some(link => link.includes('rel="next"'));
 
     console.log(`Fetched ${gists.length} gists, hasNextPage: ${hasNextPage}`);
