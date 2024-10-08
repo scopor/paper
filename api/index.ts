@@ -1,3 +1,3 @@
-import handler from './gists.ts';
+import handler from './gists';
 
 export default handler;
