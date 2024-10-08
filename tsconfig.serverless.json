@@ -3,6 +3,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "node",
+    "allowImportingTsExtensions": false,
     "noEmit": false
   },
   "include": ["api/**/*.ts"]
