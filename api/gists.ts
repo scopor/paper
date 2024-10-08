@@ -1,17 +1,17 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { Octokit }  from '@octokit/rest';
 
+const octokit = new Octokit({ auth: GIST_TOKEN });
 const GIST_TOKEN = process.env.GIST_TOKEN;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log('API route called with query:', req.query);
   const { username, page, per_page } = req.query;
 
-  // 添加 CORS 头
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // 如果是 OPTIONS 请求，直接返回 200
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -28,8 +28,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log(GIST_TOKEN);
 
   try {
-    const { Octokit } = await import('@octokit/rest'); // 动态导入 Octokit
-    const octokit = new Octokit({ auth: GIST_TOKEN });
     console.log(`Fetching gists for user: ${username}, page: ${page}, per_page: ${per_page}`);
     const response = await octokit.gists.listForUser({
       username,
