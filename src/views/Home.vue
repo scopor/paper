@@ -20,7 +20,7 @@
             <span v-if="post.tags && post.tags.length" class='text-pink-400 text-xs ml-4 transform rotate-90'>
               <img src="/tag.png" alt=""/>
             </span>
-            <div class="flex flex-wrap text-xs text-gray-400 hover:text-pink-400 ml-4 " v-for="tag in post.tags" :key="tag">
+            <div class="flex flex-wrap text-xs text-gray-400 hover:text-pink-400 ml-2" v-for="tag in post.tags" :key="tag">
               <router-link :to="{ name: 'tag', params: { tag: tag } }">{{ tag }}</router-link>
             </div>
           </div>
