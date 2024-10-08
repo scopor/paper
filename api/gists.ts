@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 
 const GIST_TOKEN = process.env.GIST_TOKEN;
-
+let Octokit: any;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log('API route called with query:', req.query);
@@ -28,7 +28,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log(GIST_TOKEN);
 
   try {
-    const octokit = await (await import('@octokit/rest')).Octokit({ auth: GIST_TOKEN });
+    if (!Octokit) {
+      const { Octokit: OctokitClass } = await import('@octokit/rest');
+      Octokit = OctokitClass;
+    }
+
+    const GIST_TOKEN = process.env.GIST_TOKEN;
+    const octokit = new Octokit({ auth: GIST_TOKEN });
     console.log(`Fetching gists for user: ${username}, page: ${page}, per_page: ${per_page}`);
     const response = await octokit.gists.listForUser({
       username,
