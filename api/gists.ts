@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Octokit }  from '@octokit/rest';
 
-const octokit = new Octokit({ auth: GIST_TOKEN });
 const GIST_TOKEN = process.env.GIST_TOKEN;
+const octokit = new Octokit({ auth: GIST_TOKEN });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log('API route called with query:', req.query);
