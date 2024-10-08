@@ -25,6 +25,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
+  console.log(GIST_TOKEN);
+
   try {
     const { Octokit } = await import('@octokit/rest'); // 动态导入 Octokit
     const octokit = new Octokit({ auth: GIST_TOKEN });
