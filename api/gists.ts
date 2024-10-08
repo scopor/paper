@@ -50,7 +50,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       hasNextPage,
     });
   } catch (error) {
-    console.error('Error fetching gists:', error);
+    console.error('Error fetching gists:', JSON.stringify(error));
     res.status(500).json({ error: 'Failed to fetch gists' });
   }
 }
