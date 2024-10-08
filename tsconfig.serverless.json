@@ -3,12 +3,12 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
-    "esModuleInterop": true, // Important for compatibility
+    "esModuleInterop": true,
     "outDir": "./dist-serverless",
-    "noEmit": false, // Must generate JS files
+    "noEmit": false,
     "strict": true,
     "skipLibCheck": true,
-    "lib": ["ES2022"] // Remove DOM and DOM.Iterable, not needed for serverless
+    "lib": ["ES2022"]
   },
   "include": ["api/**/*.ts"]
 }
