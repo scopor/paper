@@ -8,8 +8,7 @@
     "noEmit": false,
     "strict": true,
     "skipLibCheck": true,
-    "lib": ["ES2022"],
-    "outDir": "./dist-serverless"
+    "lib": ["ES2022"]
   },
   "include": ["api/**/*.ts"]
 }
