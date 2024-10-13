@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-5xl bg-white min-h-screen shadow-md mx-auto" id="shadowApp">
+  <div class="container max-w-5xl bg-white min-h-screen mx-auto" id="shadowApp">
     <div class="sticky top-0 z-50 bg-white">
       <NavBar></NavBar>
     </div>
