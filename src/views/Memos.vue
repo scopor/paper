@@ -6,14 +6,14 @@
       <li v-for="(gist, index) in gists" :key="gist.id" class="py-2">
         <div class="flex flex-col">
           <div class="flex justify-between">
-            <div class="flex justify-start space-x-4">
+            <div class="flex justify-self-start space-x-4">
               <div v-for="mark in gist.description.split(' ')">
                 <div
                     class="text-sm font-sans bg-fuchsia-50 p-1 rounded-sm text-emerald-400 hover:font-bold">
                   <a :href="gist.html_url" target="_blank">{{ mark }}</a></div>
               </div>
             </div>
-            <div class="flex justify-end">
+            <div class="flex justify-self-end">
               <div class="text-sm flex items-center">
                 <span class="pr-1"><img src="/heart.png" alt=""/></span>
                 <span class="hover:text-pink-400">{{ formatGistDate(gist.created_at) }}</span></div>
