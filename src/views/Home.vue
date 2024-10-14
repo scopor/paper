@@ -3,7 +3,7 @@
     <div class="flex flex-col">
       <div v-for="(post, index) in paginatedPosts" :key="post.slug" class="bg-white transition-shadow duration-300 space-y-8" @click="preview(post.slug)">
         <h1 class="text-2xl">
-          <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="font-sans hover:text-pink-400">
+          <router-link :to="{ name: 'posts', params: { slug: post.slug } }" class="hover:text-pink-400">
             {{ post.title }}
           </router-link>
         </h1>
