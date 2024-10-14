@@ -1,6 +1,6 @@
 <template>
   <div class="container bg-white mx-auto px-8 lg:px-16 space-y-8">
-    <div class="flex flex-wrap mt-24 justify-content-start">
+    <div class="flex flex-wrap justify-content-start">
       <div
           v-for="tag in tags"
           :key="tag.name"
