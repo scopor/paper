@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-24 bg-white px-8 lg:px-16 space-y-8">
+  <div class="container mx-auto bg-white px-8 lg:px-16 space-y-8">
     <h1 class="text-2xl text-pink-400">{{ frontmatter.title }}</h1>
     <div v-html="content" class="font-serif postContent container markdown-body"></div>
     <div class="flex flex-wrap space-x-4 items-center">
