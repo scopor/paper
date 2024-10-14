@@ -40,7 +40,7 @@ md.use(katex);
 
 md.use(emoji, { "smile": [ ":)", ":-)" ], "laughing": ":D" });
 
-md.use(markdownItTaskLists, {label: true, labelAfter: false, enabled: true});
+md.use(markdownItTaskLists, {label: true, labelAfter: false, enabled: false});
 
 md.use(MarkdownItCopyCode,
     {
