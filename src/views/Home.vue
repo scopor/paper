@@ -1,5 +1,5 @@
 <template>
-  <main class="container mt-24 mx-auto px-8 lg:px-16 space-y-8">
+  <main class="container mx-auto px-8 lg:px-16 space-y-8">
     <div class="flex flex-col">
       <div v-for="(post, index) in paginatedPosts" :key="post.slug" class="bg-white transition-shadow duration-300 space-y-8" @click="preview(post.slug)">
         <h1 class="text-2xl">
