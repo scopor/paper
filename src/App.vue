@@ -3,7 +3,7 @@
     <div class="sticky top-0 z-50 bg-white">
       <NavBar></NavBar>
     </div>
-    <router-view/>
+    <router-view class="mt-16"/>
     <Footer></Footer>
   </div>
 </template>
