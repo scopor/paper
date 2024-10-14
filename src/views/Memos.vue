@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-24 mx-auto px-8 lg:px-16 space-y-8">
-    <h1 class="text-2xl font-bold font-sans my-4 text-pink-400">Memos</h1>
+    <h1 class="text-2xl font-bold my-4 text-pink-400">Memos</h1>
     <div v-if="gists.length === 0">Nothing</div>
     <ul>
       <li v-for="(gist, index) in gists" :key="gist.id" class="py-2">
@@ -9,7 +9,7 @@
             <div class="flex justify-self-start space-x-4">
               <div v-for="mark in gist.description.split(' ')">
                 <div
-                    class="text-sm font-sans bg-fuchsia-50 p-1 rounded-sm text-emerald-400 hover:font-bold">
+                    class="text-sm bg-fuchsia-50 p-1 rounded-sm text-emerald-400 hover:font-bold">
                   <a :href="gist.html_url" target="_blank">{{ mark }}</a></div>
               </div>
             </div>
