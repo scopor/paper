@@ -8,7 +8,7 @@
           </router-link>
         </h1>
         <div v-if="post.frontmatter?.cover"><img :src=" post.frontmatter?.cover " alt=""/></div>
-        <div class="font-serif pb-4" v-html="post.description"></div>
+        <div class="pb-4" style="font-size: 18px; line-height: 2" v-html="post.description"></div>
         <div class="flex">
           <div class="flex flex-wrap justify-start items-center align-center">
             <span v-if="post.date" class='text-pink-400 text-xs'>
