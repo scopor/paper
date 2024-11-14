@@ -1,8 +1,6 @@
 <template>
-  <div class="container max-w-5xl bg-white min-h-screen mx-auto" id="shadowApp">
-    <div class="sticky top-0 z-50 bg-white">
-      <NavBar></NavBar>
-    </div>
+  <div class="container max-w-5xl max-xl:max-w-full bg-white min-h-screen mx-auto" id="shadowApp">
+    <NavBar></NavBar>
     <router-view class="mt-16"/>
     <Footer></Footer>
   </div>
