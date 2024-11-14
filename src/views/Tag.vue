@@ -6,7 +6,7 @@
           :key="tag.name"
           :class="['cursor-pointer text-black flex items-start border border-gray-50 px-4 mb-2 mr-4 bg-gray-50', currentTag === tag.name ? 'font-bold text-pink-400' : '']"
           @click="selectTag(tag.name)">
-        <span class="py-1">{{ tag.name }}</span>
+        <span class="py-0.5">{{ tag.name }}</span>
         <span class="py-0 text-xs">{{ tag.count }}</span>
       </div>
     </div>
