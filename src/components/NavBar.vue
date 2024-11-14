@@ -1,11 +1,11 @@
 <template>
-  <header class="bg-white text-black container mx-auto px-8 lg:px-16 py-10" id="NavBar">
+  <header class="sticky top-0 z-50 bg-white text-black container mx-auto px-8 lg:px-16 py-10" id="NavBar">
     <nav class="flex justify-between align-center items-center">
       <h1 class="text-2xl md:text-3xl font-bold hover:text-pink-400">
         <router-link to="/" @click="goHome"><span>Vinlane</span></router-link>
       </h1>
       <div class="flex flex-col justify-end">
-        <ul class="flex justify-end space-x-4 lg:space-x-4 text-sm font-bold">
+        <ul class="flex justify-end space-x-4 max-sm:space-x-2 text-sm font-bold">
           <li class="hover:text-pink-400">
             <router-link to="/" @click="goHome">Home</router-link>
           </li>
