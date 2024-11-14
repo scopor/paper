@@ -2,7 +2,7 @@
   <div class="container bg-white mx-auto px-8 lg:px-16 space-y-8">
     <div class="flex flex-col">
       <div v-for="(year, index) in currentYears" :key="year" class="space-y-4">
-        <h1 class="text-2xl text-pink-400 ">{{ year }}</h1>
+        <h1 class="text-2xl text-pink-400 font-bold">{{ year }}</h1>
         <ul>
           <li v-for="post in groupedPosts[year]" :key="post.slug" class="flex justify-between my-4">
               <span>
