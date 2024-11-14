@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto bg-white px-8 lg:px-16 space-y-8">
-    <h1 class="text-2xl text-pink-400">{{ frontmatter.title }}</h1>
+    <h1 class="text-2xl text-pink-400 font-bold">{{ frontmatter.title }}</h1>
     <div v-html="content" class="font-serif postContent container markdown-body"></div>
     <div class="flex flex-wrap space-x-4 items-center">
       <span v-if="frontmatter.date" class='text-pink-400 text-xs lg:text-sm -mr-2'><img src="/heart.png" alt=""/></span>
